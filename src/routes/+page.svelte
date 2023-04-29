@@ -127,7 +127,7 @@
 	}}
 />
 
-<div class="flex flex-row flex-wrap flex-1 justify-center gap-12">
+<div class="!container p-4 mx-0 flex flex-row flex-wrap flex-1 justify-center gap-12">
 	{#each paginatedSource as joint}
 		<BurgerCard {joint} />
 	{/each}

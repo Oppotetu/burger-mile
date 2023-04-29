@@ -4,6 +4,7 @@ export type Joint = {
 		current: string
 	}
 	city: string
+	adress: string
 	year: number
 	food: number
 	price: number

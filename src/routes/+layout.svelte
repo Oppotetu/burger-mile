@@ -80,7 +80,7 @@
 			<Sorting />
 		{/if}
 	</svelte:fragment>
-	<div class="">
+	<div class="container p-10 mx-auto">
 		<slot />
 	</div>
 	<svelte:fragment slot="pageFooter">

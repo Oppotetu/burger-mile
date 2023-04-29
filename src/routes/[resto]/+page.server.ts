@@ -1,13 +1,13 @@
 import { client } from '$lib/config/client'
 import type { Joint } from '$lib/types'
 
-export async function load({ url }) {
-	let slug = url.pathname.substring(1)
+export async function load({ params }) {
+	let slug: string = params.resto
+	const getResto = async () => {
+		const result: Joint[] = await client.fetch(`*[slug.current == $slug]`, { slug })
 
-	const getResto = async (slug: string) => {
-		const result: Joint[] = await client.fetch(`*[_type == "joint" && slug.current == ${slug}]`)
-		return { result }
+		return result
 	}
 
-	return { resto: getResto(slug) }
+	return { resto: getResto() }
 }
