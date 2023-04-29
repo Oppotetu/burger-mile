@@ -1,5 +1,5 @@
 <script lang="ts">
-	import logo from '$lib/assets/burgerMileLogoBg.png'
+	import logo from '$lib/assets/burgermileLogoBg.png'
 </script>
 
 <footer class="flex justify-center p-2 bg-surface-100 dark:bg-surface-800">
