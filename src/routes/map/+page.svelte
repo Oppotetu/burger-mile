@@ -1,9 +1,16 @@
 <script lang="ts">
-	import { browser } from '$app/environment'
 	import type { LatLngExpression, LayerGroup, Map } from 'leaflet'
+	import { browser } from '$app/environment'
 	import { onDestroy, onMount } from 'svelte'
-	// import burgerImage from '../../../assets/burger.svg'
-	// import burgerShadow from '../../../assets/burger-shadow.png'
+	import locationArrow from '$lib/assets/location-arrow.svg'
+	import { createEventDispatcher } from 'svelte'
+	import type { AutocompleteOption } from '@skeletonlabs/skeleton'
+	const dispatch = createEventDispatcher()
+	import LeafletSearch from '$lib/components/LeafletSearch.svelte'
+	import { page } from '$app/stores'
+	import LeafletSearchComponent from '$lib/components/LeafletSearchComponent.svelte'
+	import FlyToUser from '$lib/components/FlyToUser.svelte'
+	import ResetView from '$lib/components/ResetView.svelte'
 
 	export let data
 
@@ -11,51 +18,205 @@
 	let map: any
 	let markerLayers
 
-	const initialView: LatLngExpression = [59.92859218403887, 10.719395507025505]
+	const initialView: LatLngExpression = [59.92859218403887, 10.745395507025505]
+
+	let inputResto: string = ''
+
+	const searchRestos: AutocompleteOption[] = []
+	$: {
+		if (data) {
+			for (let i of Object.entries(data.restos)) {
+				searchRestos.push({ label: i[1].name, value: i[1].slug.current })
+			}
+		}
+	}
+
+	const handleReset = () => {
+		map.setView(initialView, 12)
+	}
+
+	const handleFly = () => {
+		map.locate({
+			setView: true,
+			maxzoom: 8
+		})
+	}
+
+	function onRestoSelection(e: any): void {
+		inputResto = e.detail.value
+		console.log(inputResto)
+		var feature = Object.entries(data.restos).find(function (x) {
+			return x[1].slug.current === inputResto
+		})
+		console.log(feature)
+		if (feature) {
+			map.setView([feature[1].latLng.lat, feature[1].latLng.lng], 15)
+		}
+	}
 
 	onMount(async () => {
 		if (browser) {
-			const leaflet = await import('leaflet')
+			const L: any = await import('leaflet')
 			// const { Marker } = await import("svelte-leafletjs")
 
-			map = leaflet.map(mapElement).setView(initialView, 12)
+			map = L.map(mapElement).setView(initialView, 12)
 
-			markerLayers = leaflet.layerGroup().addTo(map)
+			L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				attribution:
+					'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+			}).addTo(map)
 
-			leaflet
-				.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-					attribution:
-						'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+			// L.divIcon({
+			// 	className: 'btn btn-icon bg-black'
+			// }).addTo(map)
+
+			if ($page.url.searchParams.has('setView')) {
+				let setFromSearchParams = $page.url.searchParams.get('setView')
+				console.log(setFromSearchParams)
+				let feature = Object.entries(data.restos).find(function (x) {
+					return x[1].slug.current === setFromSearchParams
 				})
-				.addTo(map)
+				console.log(feature)
+				if (feature) {
+					map.setView([feature[1].latLng.lat, feature[1].latLng.lng], 15)
+				}
+			}
 
-			// let customMarker = leaflet.icon({
-			// 	iconUrl: burgerImage,
-			// 	shadowUrl: burgerShadow,
-			// 	iconSize: [70, 70],
-			// 	shadowSize: [50, 60],
-			// 	shadowAnchor: [15, 42]
-			// })
+			// SEARCH
+			L.Control.Search = L.Control.extend({
+				onAdd: function (map: any) {
+					var container = L.DomUtil.create('div')
+
+					new LeafletSearchComponent({
+						target: container,
+						props: {
+							inputBind: inputResto,
+							searchArray: searchRestos,
+							onSelection: onRestoSelection
+						}
+					})
+					L.DomEvent.disableClickPropagation(container)
+
+					return container
+				},
+				onRemove: function (map: any) {
+					// when removed
+					// L.DomEvent.removeListener(this._input, 'keyup', this.keyup, this)
+					// L.DomEvent.removeListener(form, 'submit', this.submit, this)
+				}
+			})
+
+			L.control.search = function (/*id: any,*/ options: any) {
+				return new L.Control.Search(/* id, */ options)
+			}
+
+			// RESETVIEW
+			L.Control.ResetView = L.Control.extend({
+				onAdd: function (map: any) {
+					var container = L.DomUtil.create('div')
+
+					L.DomEvent.addListener(container, 'click', L.DomEvent.stopPropagation).addListener(
+						container,
+						'click',
+						L.DomEvent.preventDefault
+					)
+
+					let some = new ResetView({
+						target: container,
+						props: {
+							handleClick: handleReset
+						}
+					})
+
+					return container
+				},
+
+				onRemove: function (map: any) {
+					// L.DomEvent.off()
+				}
+			})
+
+			L.control.resetView = function (options: any) {
+				return new L.Control.ResetView(options)
+			}
+
+			// FLYTOUSER
+			L.Control.FlyToUser = L.Control.extend({
+				onAdd: function (map: any) {
+					var container = L.DomUtil.create('div')
+
+					let some = new FlyToUser({
+						target: container,
+						props: {
+							handleClick: handleFly
+						}
+					})
+
+					return container
+				},
+
+				onRemove: function (map: any) {
+					// L.DomEvent.off()
+				}
+			})
+
+			L.control.flyToUser = function (options: any) {
+				return new L.Control.FlyToUser(options)
+			}
+
+			// TOOLBAR
+			// let toolbar = L.control({ position: 'topleft' })
+			// let toolbarComponent: any
+
+			// toolbar.onAdd = (map: any) => {
+			// 	let div = L.DomUtil.create('div')
+			// 	toolbarComponent = new Hello({
+			// 		target: div,
+			// 		props: {}
+			// 	})
+
+			// 	toolbarComponent.$on('click-reset', () => {
+			// 		map.setView(initialView, 5)
+			// 	})
+
+			// 	return div
+			// }
+			// toolbar.onRemove = () => {
+			// 	if (toolbarComponent) {
+			// 		toolbarComponent.$destroy()
+			// 		toolbarComponent = null
+			// 	}
+			// }
+			// toolbar.addTo(map)
+
+			// MARKERLAYER
+			// markerLayers = L.layerGroup().addTo(map)
 
 			function getMarkerLocations() {
 				for (let i of data.restos) {
 					let coords: LatLngExpression = [i.latLng.lat, i.latLng.lng]
-					leaflet.marker(coords).addTo(map).bindPopup(`
-            ${i.name} <hr> 
-            🎲Score: ${i.average}
-            `)
-					// 🍔: ${i.food}
-					// 💰: ${i.price} <br>
-					// 🎉: ${i.atmosphere}
-					// 😎: ${i.itFactor}
-					// `)
+					L.marker(coords)
+						.addTo(map)
+						.bindPopup(
+							`
+            <h4> ${i.name} </h4>
+            <p>🎲Score: ${i.average}</p>
+            
+            <p><a href=${i.slug.current}>Read more</a></p>
+            `
+						)
 				}
 			}
-			// , { icon: customMarker }
 
 			getMarkerLocations()
 
-			map.locate({ setView: false, watch: false })
+			L.control.search({ position: 'topright' }).addTo(map)
+
+			L.control.resetView({ position: 'topleft' }).addTo(map)
+
+			L.control.flyToUser({ position: 'topleft' }).addTo(map)
+
+			// map.locate({ setView: true, watch: false })
 		}
 	})
 
@@ -79,7 +240,7 @@
 
 <svelte:window on:resize={resizeMap} />
 
-<svelte:head>
+<!-- <svelte:head>
 	<link
 		rel="stylesheet"
 		href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -93,11 +254,16 @@
 		crossorigin=""
 	>
 	</script>
-</svelte:head>
+</svelte:head> -->
 
-<main>
-	<div class="map" bind:this={mapElement} />
-</main>
+<div class="container md:p-10 mx-auto flex flex-col text-center justify-center">
+	<h1 class="p-2 md:p-8">Map</h1>
+	<h4>Burger reviews and catering since 2020</h4>
+	<hr class="py-6 md:py-8" />
+	<main>
+		<div class="map" bind:this={mapElement} />
+	</main>
+</div>
 
 <!-- <script>
   import { onMount, onDestroy } from 'svelte';
@@ -143,9 +309,6 @@
 
 	let markerLayers;
 
-	function resizeMap() {
-	  if(map) { map.invalidateSize(); }
-  }
 	
 	$: if(map && markerLocation && markerLayers) {
 		let m = createMarker(markerLocation);
@@ -155,7 +318,6 @@
 	}
 
 </script>
-<svelte:window on:resize={resizeMap} />
 
 <style>
 	.map :global(.marker-text) {
@@ -181,20 +343,25 @@
 <div class="map" style="height:300px;width:100%" bind:this={mapElement} /> -->
 
 <style>
-	/* @import "leaflet/dist/leaflet.css"; */
+	@import 'leaflet/dist/leaflet.css';
 	main div {
 		height: 800px;
 	}
 
-	.map :global(.leaflet-marker-icon) {
+	/* .map :global(.leaflet-marker-icon) {
 		background-color: transparent;
 		border: 0;
 		color: bisque;
+	} */
+	.map :global(.leaflet-popup-content) {
+		text-align: center;
 	}
-	/* .map :global(.leaflet-control-zoom-in) {
-		padding: 0%;
+	.map :global(.leaflet-control-zoom-in) {
+		text-decoration: none !important;
+		background-color: --var(--color-primary-500);
 	}
 	.map :global(.leaflet-control-zoom-out) {
-		padding: 0%;
-	} */
+		text-decoration: none !important;
+		background-color: slategray;
+	}
 </style>

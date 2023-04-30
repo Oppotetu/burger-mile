@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit'
-import { client } from '../../lib/config/client'
+import { client } from '$lib/config/client'
 import type { Joint } from '$lib/types'
 
 export const load = async () => {

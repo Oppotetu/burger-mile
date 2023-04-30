@@ -28,7 +28,7 @@
 	</svelte:fragment>
 	<svelte:fragment slot="trail">
 		<AppRailTile value={4}>
-			<LightSwitch fillLight="fill-primary-400" fillDark="fill-tertiary-700" />
+			<LightSwitch fillLight="fill-secondary-500" fillDark="fill-tertiary-600" />
 		</AppRailTile>
 	</svelte:fragment>
 </AppRail>

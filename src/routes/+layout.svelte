@@ -35,7 +35,7 @@
 	}
 </script>
 
-<Drawer height="h-max" width="w-max" regionDrawer="flex align-center">
+<Drawer height="h-max" width="w-max">
 	{#if $drawerStore.id === 'left'}
 		<Navigation />
 	{:else if $drawerStore.id === 'right'}
@@ -54,9 +54,7 @@
 					alt="menu"
 					on:click={triggerLeft}
 				/>
-				<strong class="text-lg md:text-2xl uppercase gradient-heading"
-					><a href="/">Burgermile</a></strong
-				>
+				<strong class="text-2xl uppercase gradient-heading"><a href="/">Burgermile</a></strong>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<div class="hidden md:block md:visible">
