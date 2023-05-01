@@ -8,14 +8,14 @@
 
 <div>
 	<input
-		class="input max-w-sm peer"
+		class="peer input max-w-sm border-2 border-black bg-surface-50 text-black dark:bg-surface-50"
 		type="search"
 		name="demo"
 		bind:value={inputBind}
 		placeholder="Search..."
 	/>
 	<div
-		class="card w-full max-w-sm max-h-48 p-4 overflow-y-auto focus:outline-none invisible peer-focus:visible active:visible"
+		class="card invisible max-h-48 w-full max-w-sm overflow-y-auto p-4 focus:outline-none active:visible peer-focus:visible dark:bg-surface-50 dark:text-black"
 	>
 		<Autocomplete bind:input={inputBind} options={searchArray} on:selection={onSelection} />
 	</div>

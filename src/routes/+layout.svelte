@@ -10,11 +10,12 @@
 		AppShell,
 		Drawer,
 		LightSwitch,
-		ListBox,
-		ListBoxItem,
 		drawerStore,
-		type DrawerSettings
+		type DrawerSettings,
+		storePopup,
+		type PopupSettings
 	} from '@skeletonlabs/skeleton'
+	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom'
 	import Navigation from '$lib/components/Navigation.svelte'
 	import menuHamburger from '$lib/assets/menu-hamburger.svg'
 	import Sorting from '$lib/components/Sorting.svelte'
@@ -33,9 +34,11 @@
 		const drawerSettings: DrawerSettings = { id: 'left', position: 'left' }
 		drawerStore.open(drawerSettings)
 	}
+
+	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow })
 </script>
 
-<Drawer height="h-max" width="w-max">
+<Drawer height="h-max" width="w-max" zIndex="z-[7777]">
 	{#if $drawerStore.id === 'left'}
 		<Navigation />
 	{:else if $drawerStore.id === 'right'}
@@ -54,10 +57,10 @@
 					alt="menu"
 					on:click={triggerLeft}
 				/>
-				<strong class="text-2xl uppercase gradient-heading"><a href="/">Burgermile</a></strong>
+				<strong class="gradient-heading text-2xl uppercase"><a href="/">Burgermile</a></strong>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
-				<div class="hidden md:block md:visible">
+				<div class="hidden md:visible md:block">
 					<div class="flex flex-row md:space-x-10">
 						<a href="map">Map</a>
 						<a href="catering">Catering</a>
@@ -78,7 +81,7 @@
 			<Sorting />
 		{/if}
 	</svelte:fragment>
-	<div class="container p-10 mx-auto">
+	<div class="container mx-auto p-10">
 		<slot />
 	</div>
 	<svelte:fragment slot="pageFooter">

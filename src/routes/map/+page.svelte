@@ -57,7 +57,7 @@
 	onMount(async () => {
 		if (browser) {
 			const L: any = await import('leaflet')
-			// const { Marker } = await import("svelte-leafletjs")
+			const { Marker } = await import('svelte-leafletjs')
 
 			map = L.map(mapElement).setView(initialView, 12)
 
@@ -65,10 +65,6 @@
 				attribution:
 					'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			}).addTo(map)
-
-			// L.divIcon({
-			// 	className: 'btn btn-icon bg-black'
-			// }).addTo(map)
 
 			if ($page.url.searchParams.has('setView')) {
 				let setFromSearchParams = $page.url.searchParams.get('setView')
@@ -190,7 +186,7 @@
 			// toolbar.addTo(map)
 
 			// MARKERLAYER
-			// markerLayers = L.layerGroup().addTo(map)
+			markerLayers = L.layerGroup().addTo(map)
 
 			function getMarkerLocations() {
 				for (let i of data.restos) {
@@ -198,12 +194,9 @@
 					L.marker(coords)
 						.addTo(map)
 						.bindPopup(
-							`
-            <h4> ${i.name} </h4>
+							`<h4> ${i.name} </h4>
             <p>🎲Score: ${i.average}</p>
-            
-            <p><a href=${i.slug.current}>Read more</a></p>
-            `
+            <p><a href=${i.slug.current}>Read more</a></p>`
 						)
 				}
 			}
@@ -256,7 +249,7 @@
 	</script>
 </svelte:head> -->
 
-<div class="container md:p-10 mx-auto flex flex-col text-center justify-center">
+<div class="container mx-auto flex flex-col justify-center text-center md:p-10">
 	<h1 class="p-2 md:p-8">Map</h1>
 	<h4>Burger reviews and catering since 2020</h4>
 	<hr class="py-6 md:py-8" />
@@ -356,12 +349,24 @@
 	.map :global(.leaflet-popup-content) {
 		text-align: center;
 	}
+	.map :global(.leaflet-control-zoom) {
+		border-width: 2px;
+		border-color: black;
+	}
 	.map :global(.leaflet-control-zoom-in) {
 		text-decoration: none !important;
-		background-color: --var(--color-primary-500);
+		@apply bg-surface-50;
 	}
+
+	.map :global(.leaflet-control-zoom-in span) {
+		color: black;
+	}
+
 	.map :global(.leaflet-control-zoom-out) {
 		text-decoration: none !important;
-		background-color: slategray;
+		@apply bg-surface-50;
+	}
+	.map :global(.leaflet-control-zoom-out span) {
+		color: black;
 	}
 </style>

@@ -5,7 +5,11 @@
 </script>
 
 <div>
-	<button class="btn btn-icon bg-slate-400 w-9" type="button" on:click={handleClick}>
-		<Icon icon="fluent:location-arrow-12-regular" width="23" />
+	<button
+		class="btn btn-icon border-black border-2 bg-surface-50 w-9"
+		type="button"
+		on:click={handleClick}
+	>
+		<Icon icon="fluent:location-arrow-12-regular" width="23" color="black" />
 	</button>
 </div>

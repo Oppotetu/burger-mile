@@ -5,7 +5,11 @@
 </script>
 
 <div>
-	<button class="btn btn-icon bg-slate-400 w-9" type="button" on:click={handleClick}>
-		<Icon icon="system-uicons:reset-temporary" width="28" />
+	<button
+		class="btn btn-icon border-black border-2 bg-surface-50 w-9"
+		type="button"
+		on:click={handleClick}
+	>
+		<Icon icon="system-uicons:reset-temporary" width="26" color="black" />
 	</button>
 </div>
