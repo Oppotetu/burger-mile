@@ -38,7 +38,8 @@
 	const handleFly = () => {
 		map.locate({
 			setView: true,
-			maxzoom: 8
+			maxzoom: 8,
+			enableHighAccuracy: true
 		})
 	}
 
@@ -233,7 +234,7 @@
 
 <svelte:window on:resize={resizeMap} />
 
-<!-- <svelte:head>
+<svelte:head>
 	<link
 		rel="stylesheet"
 		href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -247,14 +248,14 @@
 		crossorigin=""
 	>
 	</script>
-</svelte:head> -->
+</svelte:head>
 
 <div class="container mx-auto flex flex-col justify-center text-center md:p-10">
 	<h1 class="p-2 md:p-8">Map</h1>
-	<h4>Burger reviews and catering since 2020</h4>
+
 	<hr class="py-6 md:py-8" />
-	<main>
-		<div class="map" bind:this={mapElement} />
+	<main class="h-96">
+		<div class="map h-full" bind:this={mapElement} />
 	</main>
 </div>
 
@@ -337,9 +338,9 @@
 
 <style>
 	@import 'leaflet/dist/leaflet.css';
-	main div {
+	/* main div {
 		height: 800px;
-	}
+	} */
 
 	/* .map :global(.leaflet-marker-icon) {
 		background-color: transparent;

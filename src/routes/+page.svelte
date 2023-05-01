@@ -11,6 +11,8 @@
 		popup
 	} from '@skeletonlabs/skeleton'
 	import StickyButton from '$lib/components/StickyButton.svelte'
+	import { fly } from 'svelte/transition'
+	import { flip } from 'svelte/animate'
 
 	let events: any = []
 
@@ -89,25 +91,49 @@
 	let y: number
 </script>
 
-<div class="bg-variant-glass-surface card z-[888] w-48 py-2 shadow-xl" data-popup="combobox">
+<div class="card variant-glass-secondary z-[888] w-48 py-2 shadow-xl" data-popup="combobox">
 	<ListBox rounded="rounded-none">
-		<ListBoxItem on:click={pageReset} on:click={scrollToBurgers} bind:group={sortByValue} name="medium" value="average"
-			>Score</ListBoxItem
+		<ListBoxItem
+			on:click={pageReset}
+			on:click={scrollToBurgers}
+			bind:group={sortByValue}
+			name="medium"
+			value="average">Score</ListBoxItem
 		>
-		<ListBoxItem on:click={pageReset} on:click={scrollToBurgers} bind:group={sortByValue} name="medium" value="food"
-			>Food</ListBoxItem
+		<ListBoxItem
+			on:click={pageReset}
+			on:click={scrollToBurgers}
+			bind:group={sortByValue}
+			name="medium"
+			value="food">Food</ListBoxItem
 		>
-		<ListBoxItem on:click={pageReset} on:click={scrollToBurgers} bind:group={sortByValue} name="medium" value="price"
-			>Price</ListBoxItem
+		<ListBoxItem
+			on:click={pageReset}
+			on:click={scrollToBurgers}
+			bind:group={sortByValue}
+			name="medium"
+			value="price">Price</ListBoxItem
 		>
-		<ListBoxItem on:click={pageReset} on:click={scrollToBurgers} bind:group={sortByValue} name="medium" value="atmosphere"
-			>Atmosphere</ListBoxItem
+		<ListBoxItem
+			on:click={pageReset}
+			on:click={scrollToBurgers}
+			bind:group={sortByValue}
+			name="medium"
+			value="atmosphere">Atmosphere</ListBoxItem
 		>
-		<ListBoxItem on:click={pageReset} on:click={scrollToBurgers} bind:group={sortByValue} name="medium" value="itFactor"
-			>It-Factor</ListBoxItem
+		<ListBoxItem
+			on:click={pageReset}
+			on:click={scrollToBurgers}
+			bind:group={sortByValue}
+			name="medium"
+			value="itFactor">It-Factor</ListBoxItem
 		>
-		<ListBoxItem on:click={pageReset} on:click={scrollToBurgers} bind:group={sortByValue} name="medium" value="distance"
-			>Proximity</ListBoxItem
+		<ListBoxItem
+			on:click={pageReset}
+			on:click={scrollToBurgers}
+			bind:group={sortByValue}
+			name="medium"
+			value="distance">Proximity</ListBoxItem
 		>
 	</ListBox>
 	<div class="arrow bg-surface-100-800-token" />
@@ -150,7 +176,7 @@
 		<StickyButton {sortByValue} usePopup={popupCombobox} />
 	</div>
 
-	<hr class="my-6" />
+	<hr class="my-6" id="last-hr" />
 
 	<Paginator
 		on:page={scrollToBurgers}
@@ -159,7 +185,7 @@
 		buttonClasses="btn-icon variant-filled-primary w-14 text-2xl"
 	/>
 
-	<hr class="my-6" id="last-hr" />
+	<hr class="my-6" />
 </div>
 <!-- <div class="fixed right-2 md:right-16 md:top-40">
 	<button type="button" class="btn btn-xl variant-glass-tertiary" on:click={triggerRight}
@@ -167,7 +193,7 @@
 	>
 </div> -->
 
-<div class="!container mx-0 flex flex-1 flex-row flex-wrap justify-center gap-12 p-4">
+<div class="breakout mx-0 flex flex-1 flex-row flex-wrap justify-center gap-12 p-4">
 	{#each paginatedSource as joint}
 		<BurgerCard {joint} />
 	{/each}
@@ -186,43 +212,13 @@
 	<hr class="my-6" />
 </div>
 
-<!--
 <style>
-	.sticky-test {
-		tab-size: 4;
-		user-select: none;
-		border: 0 solid #e5e7eb;
-		box-sizing: border-box;
-		position: absolute;
-		top: 0;
+	.breakout {
+		width: 100vw;
+		position: relative;
 		left: 50%;
-		z-index: 40;
-		margin-left: -5rem;
-		display: flex;
-		height: 2.25rem;
-		width: 10rem;
-		cursor: pointer;
-		align-items: center;
-		justify-content: center;
-		border-radius: 9999px;
-		border-width: 1px;
-		font-size: 0.875rem;
-		line-height: 1.25rem;
-
-		backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
-			var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate)
-			var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate)
-			var(--tw-backdrop-sepia);
-		--tw-backdrop-blur: blur(8px);
-		transition-property: all;
-		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-		transition-duration: 0.5s;
-		--tw-border-opacity: 1;
-		border-color: rgb(31 41 55 / var(--tw-border-opacity));
-		background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-		--tw-bg-opacity: 0.5;
-		--tw-text-opacity: 1;
-		color: rgb(212 212 216 / var(--tw-text-opacity));
+		right: 50%;
+		margin-left: -50vw;
+		margin-right: -50vw;
 	}
 </style>
--->
