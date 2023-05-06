@@ -11,8 +11,11 @@
 		popup
 	} from '@skeletonlabs/skeleton'
 	import StickyButton from '$lib/components/StickyButton.svelte'
-	import { fly } from 'svelte/transition'
+	import { quintOut } from 'svelte/easing'
+	import { crossfade, fade, fly, scale } from 'svelte/transition'
 	import { flip } from 'svelte/animate'
+	import { onMount } from 'svelte'
+	import { page } from '$app/stores'
 
 	let events: any = []
 
@@ -88,7 +91,65 @@
 		closeQuery: '.listbox-item'
 	}
 
-	let y: number
+	let usePopup: any
+	// export let sortByValue: string
+
+	const [send, receive] = crossfade({
+		duration: (d) => Math.sqrt(d * 200),
+
+		fallback(node, params) {
+			const style = getComputedStyle(node)
+			const transform = style.transform === 'none' ? '' : style.transform
+
+			return {
+				duration: 600,
+				easing: quintOut,
+				css: (t) => `
+					transform: ${transform} scale(${t});
+					opacity: ${t * 0.5}
+				`
+			}
+		}
+	})
+
+	let buttonIsUp = true
+	let upperPara: Element | null
+
+	function handleClick() {
+		if (buttonIsUp) {
+			buttonIsUp = false
+		} else {
+			buttonIsUp = true
+		}
+		console.log(buttonIsUp)
+	}
+	onMount(() => {
+		upperPara = document.getElementById('last-para')
+
+		function isElementInViewport(el: Element) {
+			const rect = el.getBoundingClientRect()
+			return (
+				rect.top >= 30 &&
+				rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+			)
+		}
+
+		const callbackFunction = async () => {
+			if (upperPara) {
+				if (!isElementInViewport(upperPara) && buttonIsUp === true) {
+					buttonIsUp = false
+				}
+				if (isElementInViewport(upperPara) && buttonIsUp === false) {
+					buttonIsUp = true
+				}
+			}
+		}
+		// callbackFunction()
+
+		document.getElementById('page')?.addEventListener('scroll', function () {
+			callbackFunction()
+		})
+	})
 </script>
 
 <div class="card variant-glass-secondary z-[888] w-48 py-2 shadow-xl" data-popup="combobox">
@@ -161,8 +222,23 @@
 	}}
 />
 
-<div class="container mx-auto flex flex-col justify-center text-center md:p-10">
-	<h1 class="p-2 md:p-8">Welcome to Burgermile</h1>
+{#if buttonIsUp === false}
+	<button
+		in:receive={{ key: 'button-id', duration: 400 }}
+		out:send={{ key: 'button-id', duration: 400 }}
+		use:popup={popupCombobox}
+		class="btn btn-icon variant-glass-primary fixed right-4 top-40 z-[777] w-24"
+	>
+		{sortByValue === 'average'
+			? 'Score'
+			: sortByValue === '_id'
+			? 'Sort by'
+			: sortByValue.charAt(0).toUpperCase() + sortByValue.slice(1)}
+	</button>
+{/if}
+
+<div class="container mx-auto flex flex-col justify-center text-center">
+	<h1 class="p-2 md:p-6">Welcome to Burgermile</h1>
 	<h4>Burger reviews and catering since 2020</h4>
 	<hr class="py-6 md:py-8" />
 	<div class="space-y-5">
@@ -171,9 +247,26 @@
 			it all
 		</p>
 		<p>We now offer <a href="catering">catering</a> for events!</p>
-		<p>Looking for burger close by? Try sorting by "Proximity"</p>
+		<p id="last-para">Looking for burger close by? Try sorting by "Proximity"</p>
 
-		<StickyButton {sortByValue} usePopup={popupCombobox} />
+		<div class="h-12">
+			{#if buttonIsUp}
+				<button
+					in:receive={{ key: 'button-id', duration: 400 }}
+					out:send={{ key: 'button-id', duration: 400 }}
+					use:popup={popupCombobox}
+					class="btn variant-filled-primary w-48"
+				>
+					{sortByValue === 'average'
+						? 'Score'
+						: sortByValue === '_id'
+						? 'Sort by'
+						: sortByValue.charAt(0).toUpperCase() + sortByValue.slice(1)}
+				</button>
+			{/if}
+		</div>
+
+		<!-- <StickyButton {sortByValue} usePopup={popupCombobox} /> -->
 	</div>
 
 	<hr class="my-6" id="last-hr" />
@@ -192,13 +285,16 @@
 		>Sort by</button
 	>
 </div> -->
-
-<div class="breakout mx-0 flex flex-1 flex-row flex-wrap justify-center gap-12 p-4">
-	{#each paginatedSource as joint}
-		<BurgerCard {joint} />
-	{/each}
-</div>
-
+{#key paginatedSource}
+	<div
+		in:fly={{ y: -30 }}
+		class="breakout mx-0 flex flex-1 flex-row flex-wrap justify-center gap-12 p-4"
+	>
+		{#each paginatedSource as joint}
+			<BurgerCard {joint} />
+		{/each}
+	</div>
+{/key}
 <div class="container mx-auto p-10">
 	<hr class="my-6" />
 

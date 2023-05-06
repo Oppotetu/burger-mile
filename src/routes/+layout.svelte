@@ -20,15 +20,8 @@
 	import menuHamburger from '$lib/assets/menu-hamburger.svg'
 	import Sorting from '$lib/components/Sorting.svelte'
 	import Footer from '$lib/components/Footer.svelte'
-
-	let state: any = {
-		sidebarLeft: false,
-		sidebarRight: false
-	}
-
-	function toggle(key: string): void {
-		state[key] = !state[key]
-	}
+	import Header from '$lib/components/Header.svelte'
+	import Icon from '@iconify/svelte'
 
 	function triggerLeft(): void {
 		const drawerSettings: DrawerSettings = { id: 'left', position: 'left' }
@@ -39,11 +32,7 @@
 </script>
 
 <Drawer height="h-max" width="w-max" zIndex="z-[7777]">
-	{#if $drawerStore.id === 'left'}
-		<Navigation />
-	{:else if $drawerStore.id === 'right'}
-		<Sorting />
-	{/if}
+	<Navigation />
 </Drawer>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -62,9 +51,15 @@
 			<svelte:fragment slot="trail">
 				<div class="hidden md:visible md:block">
 					<div class="flex flex-row md:space-x-10">
-						<a href="map">Map</a>
+						<a href="https://www.instagram.com/burgermile/">
+							<Icon icon="mdi:instagram" width="28" />
+						</a>
+						<a href="about">
+							<Icon icon="material-symbols:mail-outline" width="28" />
+						</a>
+						<!-- <a href="map">Map</a>
 						<a href="catering">Catering</a>
-						<a href="about">About</a>
+						<a href="about">About</a> -->
 						<LightSwitch fillLight="fill-primary-400" fillDark="fill-tertiary-700" />
 					</div>
 				</div>
@@ -72,15 +67,11 @@
 		</AppBar>
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">
-		{#if state.sidebarLeft}
-			<Navigation />
-		{/if}
+		<Navigation />
 	</svelte:fragment>
-	<svelte:fragment slot="sidebarRight">
-		{#if state.sidebarRight}
-			<Sorting />
-		{/if}
-	</svelte:fragment>
+	<!-- <svelte:fragment slot="pageHeader">
+		<Header />
+	</svelte:fragment> -->
 	<div class="container mx-auto p-10">
 		<slot />
 	</div>

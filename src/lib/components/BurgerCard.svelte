@@ -3,6 +3,7 @@
 	import type { Joint } from '$lib/types'
 	import iconDistance from '$lib/assets/icon-distance.png'
 	import Geolocation from 'svelte-geolocation'
+	import { fly } from 'svelte/transition'
 
 	let coords: any = []
 
@@ -56,7 +57,6 @@
 		</div>
 	</section>
 </a>
-
 <!-- {#each { length: 6 - joint.food } as _}
 <span><img src={grayBurger} alt="grayburger" /></span>
 {/each} -->

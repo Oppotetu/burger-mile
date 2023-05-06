@@ -28,7 +28,9 @@
 	</svelte:fragment>
 	<svelte:fragment slot="trail">
 		<AppRailTile value={4}>
-			<LightSwitch fillLight="fill-secondary-500" fillDark="fill-tertiary-600" />
+			<a href="https://www.instagram.com/burgermile/">
+				<Icon icon="mdi:instagram" width="35" />
+			</a>
 		</AppRailTile>
 	</svelte:fragment>
 </AppRail>

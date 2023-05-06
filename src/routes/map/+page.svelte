@@ -5,7 +5,6 @@
 	import locationArrow from '$lib/assets/location-arrow.svg'
 	import { createEventDispatcher } from 'svelte'
 	import type { AutocompleteOption } from '@skeletonlabs/skeleton'
-	const dispatch = createEventDispatcher()
 	import LeafletSearch from '$lib/components/LeafletSearch.svelte'
 	import { page } from '$app/stores'
 	import LeafletSearchComponent from '$lib/components/LeafletSearchComponent.svelte'
@@ -23,13 +22,6 @@
 	let inputResto: string = ''
 
 	const searchRestos: AutocompleteOption[] = []
-	$: {
-		if (data) {
-			for (let i of Object.entries(data.restos)) {
-				searchRestos.push({ label: i[1].name, value: i[1].slug.current })
-			}
-		}
-	}
 
 	const handleReset = () => {
 		map.setView(initialView, 12)
@@ -66,6 +58,12 @@
 				attribution:
 					'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			}).addTo(map)
+
+			// console.log(Object.entries(data.restos))
+			// for (let i of Object.entries(data.restos)) {
+			// 	// console.log(i)
+			// 	searchRestos.push({ label: i[1].name, value: i[1].slug.current })
+			// }
 
 			if ($page.url.searchParams.has('setView')) {
 				let setFromSearchParams = $page.url.searchParams.get('setView')
@@ -250,8 +248,8 @@
 	</script>
 </svelte:head>
 
-<div class="container mx-auto flex flex-col justify-center text-center md:p-10">
-	<h1 class="p-2 md:p-8">Map</h1>
+<div class="container mx-auto flex flex-col justify-center text-center">
+	<h1 class="p-2 md:p-6">Map</h1>
 
 	<hr class="py-6 md:py-8" />
 	<main class="h-96">
