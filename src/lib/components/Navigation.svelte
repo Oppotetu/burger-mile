@@ -32,6 +32,9 @@
 				<Icon icon="mdi:instagram" width="35" />
 			</a>
 		</AppRailTile>
+		<AppRailTile>
+			<LightSwitch fillLight="fill-primary-400" fillDark="fill-tertiary-700" />
+		</AppRailTile>
 	</svelte:fragment>
 </AppRail>
 

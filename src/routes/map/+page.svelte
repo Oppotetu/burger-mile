@@ -23,6 +23,12 @@
 
 	const searchRestos: AutocompleteOption[] = []
 
+	$: {
+		for (let i of Object.entries(data.restos)) {
+			searchRestos.push({ label: i[1].name, value: i[1].slug.current })
+		}
+	}
+
 	const handleReset = () => {
 		map.setView(initialView, 12)
 	}
@@ -58,12 +64,6 @@
 				attribution:
 					'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			}).addTo(map)
-
-			// console.log(Object.entries(data.restos))
-			// for (let i of Object.entries(data.restos)) {
-			// 	// console.log(i)
-			// 	searchRestos.push({ label: i[1].name, value: i[1].slug.current })
-			// }
 
 			if ($page.url.searchParams.has('setView')) {
 				let setFromSearchParams = $page.url.searchParams.get('setView')

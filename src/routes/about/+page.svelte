@@ -12,7 +12,9 @@
 	} from 'svelte-vertical-timeline'
 	import { element } from 'svelte/internal'
 	import { fade, fly, scale, slide } from 'svelte/transition'
-	import fjell2 from '$lib/assets/images/fjell2.jpg'
+	import fjell1 from '$lib/assets/images/fjell1.jpg'
+
+	// 'The idea behind rating burgers comes to life. Burgermile was on exchange in New Zealand and on a road trip. He had burger for dinner 12 days in a row. He started systemizing the reviews in order to be able to look back on where to find good burger restaurants.'
 
 	const options: {
 		title: string
@@ -26,7 +28,7 @@
 			title: 'Inception',
 			time: '13th of Mars 2015',
 			description:
-				'The idea behind rating burgers comes to life. Burgermile was on exchange in New Zealand and on a road trip. He had burger for dinner 12 days in a row. He started systemizing the reviews in order to be able to look back on where to find good burger restaurants.',
+				'The idea behind rating burgers comes to life. Burgermile was on a road trip in New Zealand. He had burger for dinner 12 days in a row, and started systemizing reviews.',
 			visible: false,
 			side: true,
 			long: true
@@ -134,10 +136,10 @@
 	})
 </script>
 
-<div class="container mx-auto flex flex-col justify-center text-center">
-	<h1 class="p-2 md:p-6">Discovering the world one burger at a time</h1>
+<div class="container mx-auto flex flex-col">
+	<h1 class="p-2 text-center md:p-6">About Burgermile</h1>
 
-	<hr class="py-6 md:py-8" />
+	<hr class="py-6" />
 
 	<div class="md:pb-8">
 		<p class="pb-10 md:float-left md:w-1/2 md:pb-8 md:pr-12 lg:px-20 lg:pb-12">
@@ -146,33 +148,35 @@
 			best of burger culture. Whether you're a fan of classic cheeseburgers, gourmet creations, or
 			plant-based options, there's likely a review that will help you discover your next favorite
 			burger.
-			<br />
-			The burger rating system on Instagram include four factors. Food, price, atmosphere and IT-factor.
-			The weighted average score is calculated by the following:
 		</p>
 		<div class="pb-4 md:float-right md:w-1/2">
 			<div class="lg:flex lg:justify-center">
 				<img
 					class="rounded-md bg-black/50 md:max-w-sm lg:max-w-md"
-					src={fjell2}
+					src={fjell1}
 					alt="mountain-burger"
 				/>
 			</div>
 		</div>
-		<div class="py-6 md:w-1/2 md:pr-12">
-			<p>Food: 50%</p>
-			<p>Price: 20%</p>
-			<p>Atmosphere: 15%</p>
-			<p>It-Factor: 15%</p>
-			<br />
-			<p>
-				The accounts may provide information about the locations where the burgers were found, along
-				with tips and recommendations.
-			</p>
-		</div>
+		<p class="md:float-left md:w-1/2 md:pr-12 lg:px-20">
+			The burger rating system on Instagram include four factors. Food, price, atmosphere and
+			IT-factor. The weighted average score is calculated by the following:
+		</p>
+
+		<ul class="ml-16 list-disc py-6 md:float-left md:w-1/4 md:pb-0 lg:ml-40">
+			<li>Food: 50%</li>
+			<li>Price: 20%</li>
+			<li>Atmosphere: 15%</li>
+			<li>It-Factor: 15%</li>
+		</ul>
+		<p class="md:float-right md:w-1/2 md:pt-6 lg:px-20">
+			The <a href="https://www.instagram.com/burgermile/">instagram account</a> may provide information
+			about the locations where the burgers were found, along with tips and recommendations.
+		</p>
 	</div>
 
-	<hr class="py-6" />
+	<h1 class="p-2 text-center md:p-6">Timeline</h1>
+	<hr class="pt-6" />
 </div>
 
 <div class="md:container md:mx-auto">
@@ -194,22 +198,30 @@
 			<TimelineItem>
 				<TimelineOppositeContent slot="opposite-content">
 					{#if option.visible}
-						<h3 transition:fly={{ x: option.side ? -200 : 200 }} class="m-0 -mt-2 p-0">
+						<h3
+							transition:fly={{ x: option.side ? -200 : 200 }}
+							class="m-0 -mt-2 p-0 text-primary-700 dark:text-primary-400"
+						>
 							{option.time}
 						</h3>
 					{/if}
 					<!-- <p class="m-0 p-0">{option.time}</p> -->
 				</TimelineOppositeContent>
-
-				<TimelineSeparator>
-					<TimelineDot style="background-color: yellow; border-color: red;" />
-					<TimelineConnector style={`${option.long ? 'height: 11rem' : 'height: 5rem'}`} />
-				</TimelineSeparator>
+				<div class={`${option.long ? 'h-72 md:h-36' : 'h-40 md:h-32'}`}>
+					<TimelineSeparator>
+						<TimelineDot
+							style="background-color: rgba(var(--color-secondary-400) / 1); border-color: rgba(var(--color-surface-400));"
+						/>
+						<TimelineConnector style={`${option.long ? 'height: 16rem' : 'height: 8rem'}`} />
+					</TimelineSeparator>
+				</div>
 				<TimelineContent>
 					{#if option.visible}
 						<p
 							transition:fly={{ x: option.side ? 200 : -200 }}
-							class="-mx-2 font-light md:mx-6 md:p-6"
+							class={`${
+								option.side ? 'text-left md:mr-32 lg:pr-40' : 'text-right md:ml-32 lg:pl-40'
+							}`}
 						>
 							{option.description}
 						</p>

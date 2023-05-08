@@ -8,7 +8,8 @@
 		type PopupSettings,
 		ListBox,
 		ListBoxItem,
-		popup
+		popup,
+		AppShell
 	} from '@skeletonlabs/skeleton'
 	import StickyButton from '$lib/components/StickyButton.svelte'
 	import { quintOut } from 'svelte/easing'
@@ -16,6 +17,8 @@
 	import { flip } from 'svelte/animate'
 	import { onMount } from 'svelte'
 	import { page } from '$app/stores'
+	import fjell1 from '$lib/assets/images/fjell1.jpg'
+	import fjell2 from '$lib/assets/images/fjell2.jpg'
 
 	let events: any = []
 
@@ -214,11 +217,11 @@
 				)
 			})
 		}
-		console.log(e.detail) // GeolocationPosition
+		// console.log(e.detail) // GeolocationPosition
 	}}
 	on:error={(e) => {
 		events = [...events, e.detail]
-		console.log(e.detail) // GeolocationError
+		// console.log(e.detail) // GeolocationError
 	}}
 />
 
@@ -227,7 +230,7 @@
 		in:receive={{ key: 'button-id', duration: 400 }}
 		out:send={{ key: 'button-id', duration: 400 }}
 		use:popup={popupCombobox}
-		class="btn btn-icon variant-glass-primary fixed right-4 top-40 z-[777] w-24"
+		class="btn btn-icon variant-filled-primary fixed right-4 top-[45%] z-[777] w-24"
 	>
 		{sortByValue === 'average'
 			? 'Score'
@@ -237,36 +240,24 @@
 	</button>
 {/if}
 
-<div class="container mx-auto flex flex-col justify-center text-center">
+<div class="flex flex-col justify-center text-center">
 	<h1 class="p-2 md:p-6">Welcome to Burgermile</h1>
-	<h4>Burger reviews and catering since 2020</h4>
-	<hr class="py-6 md:py-8" />
-	<div class="space-y-5">
-		<p>
-			Check out the <a href="https://www.instagram.com/burgermile/">Instagram account</a> that started
-			it all
-		</p>
-		<p>We now offer <a href="catering">catering</a> for events!</p>
-		<p id="last-para">Looking for burger close by? Try sorting by "Proximity"</p>
-
-		<div class="h-12">
-			{#if buttonIsUp}
-				<button
-					in:receive={{ key: 'button-id', duration: 400 }}
-					out:send={{ key: 'button-id', duration: 400 }}
-					use:popup={popupCombobox}
-					class="btn variant-filled-primary w-48"
-				>
-					{sortByValue === 'average'
-						? 'Score'
-						: sortByValue === '_id'
-						? 'Sort by'
-						: sortByValue.charAt(0).toUpperCase() + sortByValue.slice(1)}
-				</button>
-			{/if}
-		</div>
-
-		<!-- <StickyButton {sortByValue} usePopup={popupCombobox} /> -->
+	<h3 class="p-6">Discovering the world one burger at a time</h3>
+	<div id="last-para" class="h-12">
+		{#if buttonIsUp}
+			<button
+				in:receive={{ key: 'button-id', duration: 400 }}
+				out:send={{ key: 'button-id', duration: 400 }}
+				use:popup={popupCombobox}
+				class="btn variant-filled-primary w-48"
+			>
+				{sortByValue === 'average'
+					? 'Score'
+					: sortByValue === '_id'
+					? 'Sort by'
+					: sortByValue.charAt(0).toUpperCase() + sortByValue.slice(1)}
+			</button>
+		{/if}
 	</div>
 
 	<hr class="my-6" id="last-hr" />
@@ -309,6 +300,13 @@
 </div>
 
 <style>
+	.styled-img {
+		background-color: lightseagreen;
+		background-image: url(/src/lib/assets/images/fjell2.jpg);
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
 	.breakout {
 		width: 100vw;
 		position: relative;
