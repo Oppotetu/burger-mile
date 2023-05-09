@@ -16,6 +16,7 @@
 		<AppRailTile on:click={drawerClose} tag="a" href="/" label="Home" value={0}>
 			<img src={logo} alt="logo" class="w-12" />
 		</AppRailTile>
+
 		<AppRailTile on:click={drawerClose} tag="a" href="map" label="Map" value={1}>
 			<Icon icon="mdi:map-legend" width="35" />
 		</AppRailTile>
@@ -27,12 +28,12 @@
 		</AppRailTile>
 	</svelte:fragment>
 	<svelte:fragment slot="trail">
-		<AppRailTile value={4}>
+		<AppRailTile tag="a" value={4}>
 			<a href="https://www.instagram.com/burgermile/">
 				<Icon icon="mdi:instagram" width="35" />
 			</a>
 		</AppRailTile>
-		<AppRailTile>
+		<AppRailTile tag="button">
 			<LightSwitch fillLight="fill-primary-400" fillDark="fill-tertiary-700" />
 		</AppRailTile>
 	</svelte:fragment>

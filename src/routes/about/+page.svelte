@@ -103,6 +103,8 @@
 	let items: any
 
 	onMount(() => {
+		document.getElementById('page')?.scrollTo(0, 0)
+
 		items = document.getElementsByClassName('timeline-dot')
 
 		function isElementInViewport(el: Element) {

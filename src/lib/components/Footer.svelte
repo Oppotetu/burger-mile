@@ -1,11 +1,11 @@
 <script lang="ts">
-	import logo from '$lib/assets/burgermileLogoBg.png'
+	import logo from '$lib/assets/logoGood.svg'
 	import Icon from '@iconify/svelte'
 </script>
 
 <footer class="flex justify-center bg-surface-100 p-2 dark:bg-surface-800">
 	<div class="flex flex-col justify-center space-y-6 text-center">
-		<img src={logo} alt="logo" class="h-28" />
+		<img src={logo} alt="logo" class="h-20" />
 
 		<p class="font-bold">
 			Corp goes here <br />Reviews and catering since 2020

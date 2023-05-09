@@ -1,5 +1,10 @@
 <script lang="ts">
 	import drobak from '$lib/assets/images/drobak.jpg'
+	import { onMount } from 'svelte'
+
+	onMount(() => {
+		document.getElementById('page')?.scrollTo(0, 0)
+	})
 </script>
 
 <div class="container mx-auto flex flex-col justify-center text-center">

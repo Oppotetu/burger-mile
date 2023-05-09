@@ -127,6 +127,8 @@
 		console.log(buttonIsUp)
 	}
 	onMount(() => {
+    document.getElementById('page')?.scrollTo(0, 0)
+
 		upperPara = document.getElementById('last-para')
 
 		function isElementInViewport(el: Element) {
@@ -230,7 +232,7 @@
 		in:receive={{ key: 'button-id', duration: 400 }}
 		out:send={{ key: 'button-id', duration: 400 }}
 		use:popup={popupCombobox}
-		class="btn btn-icon variant-filled-primary fixed right-4 top-[45%] z-[777] w-24"
+		class="btn btn-icon variant-filled-primary fixed right-4 top-[30%] z-[777] w-24"
 	>
 		{sortByValue === 'average'
 			? 'Score'

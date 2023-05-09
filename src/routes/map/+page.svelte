@@ -55,6 +55,8 @@
 
 	onMount(async () => {
 		if (browser) {
+			document.getElementById('page')?.scrollTo(0, 0)
+
 			const L: any = await import('leaflet')
 			const { Marker } = await import('svelte-leafletjs')
 
