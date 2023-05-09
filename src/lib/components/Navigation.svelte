@@ -2,7 +2,7 @@
 	import { AppRail, AppRailTile, LightSwitch, drawerStore } from '@skeletonlabs/skeleton'
 	import { writable, type Writable } from 'svelte/store'
 	import Icon from '@iconify/svelte'
-	import logo from '$lib/assets/burgermileLogoBg.png'
+	import logo from '$lib/assets/logoGood.svg'
 
 	function drawerClose(): void {
 		drawerStore.close()
