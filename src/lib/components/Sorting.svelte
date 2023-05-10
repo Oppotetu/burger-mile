@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Joint } from '$lib/types'
 	import { ListBox, ListBoxItem, RadioGroup, RadioItem, drawerStore } from '@skeletonlabs/skeleton'
-	import { sortByValue, reset } from '../../stores'
+	import { sortByValue, reset } from '$lib/stores'
 
 	$sortByValue = '_id'
 

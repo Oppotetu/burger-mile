@@ -13,27 +13,55 @@
 
 <AppRail selected={storeValue} width="w-28 p-0 m-0">
 	<svelte:fragment slot="lead">
-		<AppRailTile on:click={drawerClose} tag="a" href="/" label="Home" value={0}>
+		<AppRailTile
+			class="h-[1/6] md:h-max"
+			on:click={drawerClose}
+			tag="a"
+			href="/"
+			label="Home"
+			value={0}
+		>
 			<img src={logo} alt="logo" class="w-12" />
 		</AppRailTile>
 
-		<AppRailTile on:click={drawerClose} tag="a" href="map" label="Map" value={1}>
+		<AppRailTile
+			class="h-[1/6] md:h-max"
+			on:click={drawerClose}
+			tag="a"
+			href="map"
+			label="Map"
+			value={1}
+		>
 			<Icon icon="mdi:map-legend" width="35" />
 		</AppRailTile>
-		<AppRailTile on:click={drawerClose} tag="a" href="catering" label="Catering" value={2}>
+		<AppRailTile
+			class="h-[1/6] md:h-max"
+			on:click={drawerClose}
+			tag="a"
+			href="catering"
+			label="Catering"
+			value={2}
+		>
 			<Icon icon="material-symbols:restaurant" width="35" />
 		</AppRailTile>
-		<AppRailTile on:click={drawerClose} tag="a" href="about" label="About" value={3}>
+		<AppRailTile
+			class="h-[1/6] md:h-max"
+			on:click={drawerClose}
+			tag="a"
+			href="about"
+			label="About"
+			value={3}
+		>
 			<Icon icon="mdi:web" width="35" />
 		</AppRailTile>
 	</svelte:fragment>
 	<svelte:fragment slot="trail">
-		<AppRailTile tag="a" value={4}>
+		<AppRailTile class="h-[1/6] md:h-max" tag="a" value={4}>
 			<a href="https://www.instagram.com/burgermile/">
 				<Icon icon="mdi:instagram" width="35" />
 			</a>
 		</AppRailTile>
-		<AppRailTile tag="button">
+		<AppRailTile class="h-[1/6] md:h-max" tag="button">
 			<LightSwitch fillLight="fill-primary-400" fillDark="fill-tertiary-700" />
 		</AppRailTile>
 	</svelte:fragment>

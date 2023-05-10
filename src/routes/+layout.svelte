@@ -36,7 +36,8 @@
 </Drawer>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<AppShell slotSidebarLeft="hidden md:block md:visible bg-surface-500/10">
+<!-- <AppShell slotSidebarLeft="hidden md:block md:visible bg-surface-500/10"> -->
+<AppShell slotSidebarLeft="w-0 md:w-max bg-surface-500/10">
 	<!-- <svelte:fragment slot="header"> -->
 	<!-- <img class="btn btn-sm mr-4 md:hidden" src={menuHamburger} alt="menu" on:click={triggerLeft} /> -->
 	<!-- <AppBar>
@@ -57,7 +58,7 @@
 		</AppBar> -->
 	<!-- </svelte:fragment> -->
 	<!-- <svelte:fragment slot="pageHeader">
-		<Header />
+		<h1>headae</h1>
 	</svelte:fragment> -->
 	<svelte:fragment slot="sidebarLeft">
 		<Navigation />
@@ -76,11 +77,11 @@
 	</svelte:fragment>
 </AppShell>
 
-<style>
-	.styled-img {
+<!-- <style>
+	.page-header {
 		background-color: lightseagreen;
 		background-image: url(/src/lib/assets/images/fjell2.jpg);
 		background-repeat: no-repeat;
 		background-size: cover;
 	}
-</style>
+</style> -->
