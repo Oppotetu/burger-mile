@@ -32,7 +32,7 @@
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow })
 </script>
 
-<Drawer height="h-max" width="w-max" zIndex="z-[7777]">
+<Drawer width="w-max" zIndex="z-[7777]">
 	<Navigation />
 </Drawer>
 

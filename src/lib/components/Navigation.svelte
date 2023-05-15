@@ -18,7 +18,6 @@
 		<AppRailTile on:click={drawerClose} value={0} tag="a" href="/" label="Home">
 			<img src={logo} alt="logo" class="w-12" />
 		</AppRailTile>
-
 		<AppRailTile on:click={drawerClose} value={1} tag="a" href="map" label="Map">
 			<Icon icon="mdi:map-legend" width="35" />
 		</AppRailTile>

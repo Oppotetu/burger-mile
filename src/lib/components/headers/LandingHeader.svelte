@@ -71,7 +71,7 @@
 		in:receive={{ key: 'button-id', duration: 400 }}
 		out:send={{ key: 'button-id', duration: 400 }}
 		use:popup={popupCombobox}
-		class="btn btn-icon variant-filled-primary fixed right-1 top-[11%] z-[777] w-24"
+		class="btn btn-icon variant-filled-primary fixed right-1 top-[14%] z-[777] w-24"
 	>
 		{sortByValue === 'average'
 			? 'Score'
@@ -84,7 +84,7 @@
 <div class="background flex flex-col pt-3 text-center text-black">
 	<h1 class="pt-2 font-semibold text-primary-900">Welcome to Burgermile</h1>
 	<h3 class="mx-20 flex-grow font-medium text-black">Discovering the world one burger at a time</h3>
-	<div id="last-para" class="p-5 md:p-8">
+	<div id="last-para" class="h-10 pb-16 md:pb-20 lg:pb-28">
 		{#if $buttonIsUp}
 			<button
 				in:receive={{ key: 'button-id', duration: 400 }}
