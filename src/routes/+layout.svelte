@@ -20,8 +20,9 @@
 	import menuHamburger from '$lib/assets/menu-hamburger.svg'
 	import Sorting from '$lib/components/Sorting.svelte'
 	import Footer from '$lib/components/Footer.svelte'
-	import Header from '$lib/components/Header.svelte'
 	import Icon from '@iconify/svelte'
+	import LandingHeader from '$lib/components/headers/LandingHeader.svelte'
+	import { page } from '$app/stores'
 
 	function triggerLeft(): void {
 		const drawerSettings: DrawerSettings = { id: 'left', position: 'left' }
@@ -37,51 +38,37 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- <AppShell slotSidebarLeft="hidden md:block md:visible bg-surface-500/10"> -->
-<AppShell slotSidebarLeft="w-0 md:w-max bg-surface-500/10">
-	<!-- <svelte:fragment slot="header"> -->
-	<!-- <img class="btn btn-sm mr-4 md:hidden" src={menuHamburger} alt="menu" on:click={triggerLeft} /> -->
-	<!-- <AppBar>
+<AppShell slotSidebarLeft="w-0 md:w-max bg-surface-500/10" slotHeader="h-max md:hidden">
+	<svelte:fragment slot="header">
+		<AppBar padding="p-2 px-4">
 			<svelte:fragment slot="lead">
-			
-				<strong class="gradient-heading text-2xl uppercase"><a href="/">Burgermile</a></strong>
+				<!-- <strong class="gradient-heading text-2xl uppercase"><a href="/">Burgermile</a></strong> -->
+				<img class="btn btn-sm" src={menuHamburger} alt="menu" on:click={triggerLeft} />
 			</svelte:fragment>
-			<svelte:fragment slot="trail">
-				<div class="flex flex-row md:space-x-10">
-					<a class="hidden md:visible md:block" href="https://www.instagram.com/burgermile/">
-						<Icon icon="mdi:instagram" width="28" />
-					</a>
 
+			<svelte:fragment slot="trail">
+				<div class="flex flex-row place-items-center space-x-10">
+					<a href="https://www.instagram.com/burgermile/">
+						<Icon icon="mdi:instagram" width="35" />
+					</a>
 
 					<LightSwitch fillLight="fill-primary-400" fillDark="fill-tertiary-700" />
 				</div>
 			</svelte:fragment>
-		</AppBar> -->
-	<!-- </svelte:fragment> -->
-	<!-- <svelte:fragment slot="pageHeader">
-		<h1>headae</h1>
-	</svelte:fragment> -->
+		</AppBar>
+	</svelte:fragment>
+	<svelte:fragment slot="pageHeader">
+		{#if $page.route.id === '/'}
+			<LandingHeader />
+		{/if}
+	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft">
 		<Navigation />
 	</svelte:fragment>
 	<div class="container mx-auto p-10">
-		<img
-			class="btn btn-sm fixed left-1 top-1 z-[5555] mr-4 bg-secondary-300 md:hidden"
-			src={menuHamburger}
-			alt="menu"
-			on:click={triggerLeft}
-		/>
 		<slot />
 	</div>
 	<svelte:fragment slot="pageFooter">
 		<Footer />
 	</svelte:fragment>
 </AppShell>
-
-<!-- <style>
-	.page-header {
-		background-color: lightseagreen;
-		background-image: url(/src/lib/assets/images/fjell2.jpg);
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
-</style> -->

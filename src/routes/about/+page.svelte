@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { browser } from '$app/environment'
 	import { onMount } from 'svelte'
 	import {
 		Timeline,
@@ -10,8 +9,7 @@
 		TimelineContent,
 		TimelineOppositeContent
 	} from 'svelte-vertical-timeline'
-	import { element } from 'svelte/internal'
-	import { fade, fly, scale, slide } from 'svelte/transition'
+	import { fly } from 'svelte/transition'
 	import fjell1 from '$lib/assets/images/fjell1.jpg'
 
 	// 'The idea behind rating burgers comes to life. Burgermile was on exchange in New Zealand and on a road trip. He had burger for dinner 12 days in a row. He started systemizing the reviews in order to be able to look back on where to find good burger restaurants.'
@@ -209,12 +207,12 @@
 					{/if}
 					<!-- <p class="m-0 p-0">{option.time}</p> -->
 				</TimelineOppositeContent>
-				<div class={`${option.long ? 'h-72 md:h-36' : 'h-40 md:h-32'}`}>
+				<div class={`${option.long ? 'h-72 md:h-36' : 'h-44 md:h-32'}`}>
 					<TimelineSeparator>
 						<TimelineDot
 							style="background-color: rgba(var(--color-secondary-400) / 1); border-color: rgba(var(--color-surface-400));"
 						/>
-						<TimelineConnector style={`${option.long ? 'height: 16rem' : 'height: 8rem'}`} />
+						<TimelineConnector style={`${option.long ? 'height: 16rem' : 'height: 9rem'}`} />
 					</TimelineSeparator>
 				</div>
 				<TimelineContent>
@@ -242,6 +240,9 @@
 		<!-- {/each} -->
 	</Timeline>
 </div>
+
+<hr class="mt-20 py-6" />
+
 <!-- in:fly={{ x: 200, duration: 2000 }}
 out:fly={{ x: -200, duration: 2000 }} -->
 

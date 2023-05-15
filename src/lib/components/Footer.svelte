@@ -1,56 +1,39 @@
 <script lang="ts">
-	import logo from '$lib/assets/logoGood.svg'
+	// import logo from '$lib/assets/logoGood.svg'
 	import Icon from '@iconify/svelte'
 </script>
 
-<footer class="flex justify-center bg-surface-100 p-2 dark:bg-surface-800">
-	<div class="flex flex-col justify-center space-y-6 text-center">
-		<img src={logo} alt="logo" class="h-20" />
-
-		<p class="font-bold">
-			Corp goes here <br />Reviews and catering since 2020
-		</p>
-		<p>Copyright goes here</p>
-
-		<div class="grid grid-flow-col gap-4">
-			<a href="https://no.linkedin.com/in/tronsanderud">
-				<Icon icon="mdi:linkedin" width="30" />
-			</a>
-			<a href="https://www.instagram.com/burgermile/">
-				<Icon icon="mdi:instagram" width="30" />
-			</a>
-			<a href="about">
-				<Icon icon="material-symbols:mail-outline" width="30" />
-			</a>
+<footer class="mt-14 p-12 text-primary-50 bg-surface-400-500-token">
+	<div class="flex justify-evenly">
+		<div class="flex flex-col place-items-center space-y-4">
+			<h4>Links</h4>
+			<p>
+				<a href="https://www.instagram.com/burgermile/">
+					<Icon icon="mdi:instagram" width="30" />
+				</a>
+			</p>
+			<p>
+				<a href="https://no.linkedin.com/in/tronsanderud">
+					<Icon icon="mdi:linkedin" width="30" />
+				</a>
+			</p>
+		</div>
+		<div>
+			<ul class="space-y-3 text-center">
+				<li><a class="no-underline" href="map">Map</a></li>
+				<li><a class="no-underline" href="/">Home</a></li>
+				<li><a class="no-underline" href="catering">Catering</a></li>
+				<li><a class="no-underline" href="about">About</a></li>
+			</ul>
+		</div>
+		<div class="space-y-3">
+			<h4>Contact</h4>
+			<ul>
+				<li>mailadresse</li>
+				<li>more</li>
+				<li>morsfesf</li>
+			</ul>
 		</div>
 	</div>
+	<div />
 </footer>
-
-<!-- <footer class="page-footer">
-	<span>made by </span>
-	<a href="https://georgemartsoukos.com/" target="_blank">
-		<img
-			width="24"
-			height="24"
-			src="https://assets.codepen.io/162656/george-martsoukos-small-logo.svg"
-			alt="George Martsoukos logo"
-		/>
-	</a>
-</footer> -->
-
-<!-- 
-	.page-footer {
-		position: fixed;
-		right: 0;
-		bottom: 20px;
-		display: flex;
-		align-items: center;
-		padding: 5px;
-		color: black;
-		background: rgba(255, 255, 255, 0.65);
-	}
-
-	.page-footer a {
-		display: flex;
-		margin-left: 4px;
-	} -->

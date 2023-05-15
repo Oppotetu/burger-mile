@@ -1,77 +1,42 @@
 <script lang="ts">
 	import { AppRail, AppRailTile, LightSwitch, drawerStore } from '@skeletonlabs/skeleton'
-	import { writable, type Writable } from 'svelte/store'
+	import { derived, writable, type Writable } from 'svelte/store'
 	import Icon from '@iconify/svelte'
 	import logo from '$lib/assets/logoGood.svg'
+	import { page } from '$app/stores'
 
 	function drawerClose(): void {
 		drawerStore.close()
 	}
 
-	const storeValue: Writable<number> = writable(0)
+	const selected: Writable<number> = writable(0)
+	// const selected = derived(page, ($page) => $page.url.pathname)
 </script>
 
-<AppRail selected={storeValue} width="w-28 p-0 m-0">
+<AppRail {selected} width="w-28 p-0 m-0" regionTrail="hidden md:block md:visible">
 	<svelte:fragment slot="lead">
-		<AppRailTile
-			class="h-24 md:h-max"
-			on:click={drawerClose}
-			tag="a"
-			href="/"
-			label="Home"
-			value={0}
-		>
+		<AppRailTile on:click={drawerClose} value={0} tag="a" href="/" label="Home">
 			<img src={logo} alt="logo" class="w-12" />
 		</AppRailTile>
 
-		<AppRailTile
-			class="h-24 md:h-max"
-			on:click={drawerClose}
-			tag="a"
-			href="map"
-			label="Map"
-			value={1}
-		>
+		<AppRailTile on:click={drawerClose} value={1} tag="a" href="map" label="Map">
 			<Icon icon="mdi:map-legend" width="35" />
 		</AppRailTile>
-		<AppRailTile
-			class="h-24 md:h-max"
-			on:click={drawerClose}
-			tag="a"
-			href="catering"
-			label="Catering"
-			value={2}
-		>
+		<AppRailTile on:click={drawerClose} value={2} tag="a" href="catering" label="Catering">
 			<Icon icon="material-symbols:restaurant" width="35" />
 		</AppRailTile>
-		<AppRailTile
-			class="h-24 md:h-max"
-			on:click={drawerClose}
-			tag="a"
-			href="about"
-			label="About"
-			value={3}
-		>
+		<AppRailTile on:click={drawerClose} value={3} tag="a" href="about" label="About">
 			<Icon icon="mdi:web" width="35" />
 		</AppRailTile>
 	</svelte:fragment>
 	<svelte:fragment slot="trail">
-		<AppRailTile class="h-24 md:h-max" tag="a" value={4}>
+		<AppRailTile value={4}>
 			<a href="https://www.instagram.com/burgermile/">
 				<Icon icon="mdi:instagram" width="35" />
 			</a>
 		</AppRailTile>
-		<AppRailTile class="h-24 md:h-max" tag="button">
+		<AppRailTile value={5}>
 			<LightSwitch fillLight="fill-primary-400" fillDark="fill-tertiary-700" />
 		</AppRailTile>
 	</svelte:fragment>
 </AppRail>
-
-<!-- <nav class="list-nav p-4">
-	<ul>
-		<li><a href="/" on:click={drawerClose}>Home</a></li>
-		<li><a href="map" on:click={drawerClose}>Map</a></li>
-		<li><a href="catering" on:click={drawerClose}>Catering</a></li>
-		<li><a href="about" on:click={drawerClose}>About</a></li>
-	</ul>
-</nav> -->

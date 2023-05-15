@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
-	import { userGeoStatus } from '../../stores'
+	import { userGeoStatus } from '$lib/stores'
 
 	onMount(() => {
 		if (navigator.geolocation) {

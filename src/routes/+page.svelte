@@ -19,6 +19,7 @@
 	import { page } from '$app/stores'
 	import fjell1 from '$lib/assets/images/fjell1.jpg'
 	import fjell2 from '$lib/assets/images/fjell2.jpg'
+	import { buttonIsUp } from '$lib/stores.js'
 
 	let events: any = []
 
@@ -115,45 +116,18 @@
 		}
 	})
 
-	let buttonIsUp = true
-	let upperPara: Element | null
+	// let buttonIsUp = true
 
-	function handleClick() {
-		if (buttonIsUp) {
-			buttonIsUp = false
-		} else {
-			buttonIsUp = true
-		}
-		console.log(buttonIsUp)
-	}
+	// function handleClick() {
+	// 	if (buttonIsUp) {
+	// 		$buttonIsUp = false
+	// 	} else {
+	// 		$buttonIsUp = true
+	// 	}
+	// }
+
 	onMount(() => {
 		document.getElementById('page')?.scrollTo(0, 0)
-
-		upperPara = document.getElementById('last-para')
-
-		function isElementInViewport(el: Element) {
-			const rect = el.getBoundingClientRect()
-			return (
-				rect.top >= 30 &&
-				rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-			)
-		}
-
-		const callbackFunction = async () => {
-			if (upperPara) {
-				if (!isElementInViewport(upperPara) && buttonIsUp === true) {
-					buttonIsUp = false
-				}
-				if (isElementInViewport(upperPara) && buttonIsUp === false) {
-					buttonIsUp = true
-				}
-			}
-		}
-		// callbackFunction()
-
-		document.getElementById('page')?.addEventListener('scroll', function () {
-			callbackFunction()
-		})
 	})
 </script>
 
@@ -163,42 +137,42 @@
 			on:click={pageReset}
 			on:click={scrollToBurgers}
 			bind:group={sortByValue}
-			name="medium"
+			name="average"
 			value="average">Score</ListBoxItem
 		>
 		<ListBoxItem
 			on:click={pageReset}
 			on:click={scrollToBurgers}
 			bind:group={sortByValue}
-			name="medium"
+			name="food"
 			value="food">Food</ListBoxItem
 		>
 		<ListBoxItem
 			on:click={pageReset}
 			on:click={scrollToBurgers}
 			bind:group={sortByValue}
-			name="medium"
+			name="price"
 			value="price">Price</ListBoxItem
 		>
 		<ListBoxItem
 			on:click={pageReset}
 			on:click={scrollToBurgers}
 			bind:group={sortByValue}
-			name="medium"
+			name="atmosphere"
 			value="atmosphere">Atmosphere</ListBoxItem
 		>
 		<ListBoxItem
 			on:click={pageReset}
 			on:click={scrollToBurgers}
 			bind:group={sortByValue}
-			name="medium"
+			name="itFactor"
 			value="itFactor">It-Factor</ListBoxItem
 		>
 		<ListBoxItem
 			on:click={pageReset}
 			on:click={scrollToBurgers}
 			bind:group={sortByValue}
-			name="medium"
+			name="distance"
 			value="distance">Proximity</ListBoxItem
 		>
 	</ListBox>
@@ -227,45 +201,34 @@
 	}}
 />
 
-{#if buttonIsUp === false}
-	<button
-		in:receive={{ key: 'button-id', duration: 400 }}
-		out:send={{ key: 'button-id', duration: 400 }}
-		use:popup={popupCombobox}
-		class="btn btn-icon variant-filled-primary fixed right-1 top-1 z-[777] w-24 md:top-[12%]"
-	>
-		{sortByValue === 'average'
-			? 'Score'
-			: sortByValue === '_id'
-			? 'Sort by'
-			: sortByValue.charAt(0).toUpperCase() + sortByValue.slice(1)}
-	</button>
-{/if}
-
-<div class="flex flex-col justify-center text-center">
+<!-- <div class="flex flex-col justify-center text-center">
 	<h1 class="p-2 md:p-6">Welcome to Burgermile</h1>
-	<h3 class="p-6">Discovering the world one burger at a time</h3>
-	<div id="last-para" class="h-12">
-		{#if buttonIsUp}
-			<button
-				in:receive={{ key: 'button-id', duration: 400 }}
-				out:send={{ key: 'button-id', duration: 400 }}
-				use:popup={popupCombobox}
-				class="btn variant-filled-primary w-48"
-			>
-				{sortByValue === 'average'
-					? 'Score'
-					: sortByValue === '_id'
-					? 'Sort by'
-					: sortByValue.charAt(0).toUpperCase() + sortByValue.slice(1)}
-			</button>
-		{/if}
-	</div>
+	<h3 class="p-6">Discovering the world one burger at a time</h3> -->
 
-	<hr class="my-6" id="last-hr" />
+<!-- <div id="last-para" class="position-md lg:position-lg flex h-10 justify-center">
+	{#if buttonIsUp}
+		<button
+			in:receive={{ key: 'button-id', duration: 400 }}
+			out:send={{ key: 'button-id', duration: 400 }}
+			use:popup={popupCombobox}
+			class="btn variant-filled-primary w-48"
+		>
+			{sortByValue === 'average'
+				? 'Score'
+				: sortByValue === '_id'
+				? 'Sort by'
+				: sortByValue.charAt(0).toUpperCase() + sortByValue.slice(1)}
+		</button>
+	{/if}
+</div> -->
+
+<!-- <hr class="my-6" id="last-hr" />
+</div> -->
+
+<div class="container mx-auto">
+	<hr class="mb-6" id="last-hr" />
 
 	<Paginator
-		on:page={scrollToBurgers}
 		bind:settings={paginator}
 		text="text-md"
 		buttonClasses="btn-icon variant-filled-primary w-14 text-2xl"
@@ -273,22 +236,18 @@
 
 	<hr class="my-6" />
 </div>
-<!-- <div class="fixed right-2 md:right-16 md:top-40">
-	<button type="button" class="btn btn-xl variant-glass-tertiary" on:click={triggerRight}
-		>Sort by</button
-	>
-</div> -->
+
 {#key paginatedSource}
 	<div
 		in:fly={{ y: -30 }}
-		class="breakout mx-0 flex flex-1 flex-row flex-wrap justify-center gap-12 p-4"
+		class="breakout mx-0 flex flex-1 flex-row flex-wrap justify-center gap-8 p-4 lg:gap-12"
 	>
 		{#each paginatedSource as joint}
 			<BurgerCard {joint} />
 		{/each}
 	</div>
 {/key}
-<div class="container mx-auto p-10">
+<div class="container mx-auto">
 	<hr class="my-6" />
 
 	<Paginator
@@ -298,17 +257,10 @@
 		buttonClasses="btn-icon variant-filled-primary w-14"
 	/>
 
-	<hr class="my-6" />
+	<hr class="mt-6" />
 </div>
 
 <style>
-	.styled-img {
-		background-color: lightseagreen;
-		background-image: url(/src/lib/assets/images/fjell2.jpg);
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
-
 	.breakout {
 		width: 100vw;
 		position: relative;
