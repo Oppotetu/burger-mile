@@ -53,7 +53,7 @@
 				}
 			}
 		}
-		// callbackFunction()
+		callbackFunction()
 
 		document.getElementById('page')?.addEventListener('scroll', function () {
 			callbackFunction()
