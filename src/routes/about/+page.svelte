@@ -95,6 +95,14 @@
 			visible: false,
 			side: true,
 			long: false
+		},
+		{
+			title: '?',
+			time: '?',
+			description: '?',
+			visible: false,
+			side: false,
+			long: false
 		}
 	]
 

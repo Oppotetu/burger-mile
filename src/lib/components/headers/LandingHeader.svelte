@@ -71,7 +71,7 @@
 		in:receive={{ key: 'button-id', duration: 400 }}
 		out:send={{ key: 'button-id', duration: 400 }}
 		use:popup={popupCombobox}
-		class="btn btn-icon variant-filled-primary fixed right-1 top-[14%] z-[777] w-24"
+		class="btn btn-icon variant-filled-primary fixed right-1 top-[14%] z-[777] w-24 md:top-[20%]"
 	>
 		{sortByValue === 'average'
 			? 'Score'
@@ -84,7 +84,7 @@
 <div class="background flex flex-col pt-3 text-center text-black">
 	<h1 class="pt-2 font-semibold text-primary-900">Welcome to Burgermile</h1>
 	<h3 class="mx-20 flex-grow font-medium text-black">Discovering the world one burger at a time</h3>
-	<div id="last-para" class="h-10 pb-16 md:pb-20 lg:pb-28">
+	<div id="last-para" class="h-10 pb-16 md:pb-20 xl:pb-28">
 		{#if $buttonIsUp}
 			<button
 				in:receive={{ key: 'button-id', duration: 400 }}
@@ -108,13 +108,25 @@
 		background-image: url(/src/lib/assets/images/fjell2.jpg);
 		background-repeat: no-repeat;
 		background-size: cover;
-		height: 60vh;
+		background-position-y: start;
+		height: 70vh;
 	}
 
-	@media screen and (min-width: 1024px) {
+	@media (min-width: 768px) {
+		.background {
+			background-position-y: start;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.background {
+			background-position-y: 14%;
+		}
+	}
+
+	@media screen and (min-width: 1280px) {
 		.background {
 			background-position-y: 42%;
-			height: 70vh;
 		}
 	}
 </style>

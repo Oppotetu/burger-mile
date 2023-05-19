@@ -13,7 +13,7 @@
 	// const selected = derived(page, ($page) => $page.url.pathname)
 </script>
 
-<AppRail {selected} width="w-28 p-0 m-0" regionTrail="hidden md:block md:visible">
+<AppRail {selected} width="w-20 xl:w-20" regionDefault="" regionTrail="hidden md:visible md:block">
 	<svelte:fragment slot="lead">
 		<AppRailTile on:click={drawerClose} value={0} tag="a" href="/" label="Home">
 			<img src={logo} alt="logo" class="w-12" />
@@ -27,15 +27,17 @@
 		<AppRailTile on:click={drawerClose} value={3} tag="a" href="about" label="About">
 			<Icon icon="mdi:web" width="35" />
 		</AppRailTile>
-	</svelte:fragment>
-	<svelte:fragment slot="trail">
-		<AppRailTile value={4}>
+		<AppRailTile value={4} label="Instagram">
 			<a href="https://www.instagram.com/burgermile/">
 				<Icon icon="mdi:instagram" width="35" />
 			</a>
 		</AppRailTile>
-		<AppRailTile value={5}>
+	</svelte:fragment>
+	<svelte:fragment slot="trail">
+		<div class="flex h-20 flex-col place-content-center place-items-center xl:h-20">
 			<LightSwitch fillLight="fill-primary-400" fillDark="fill-tertiary-700" />
-		</AppRailTile>
+		</div>
+		<!-- <AppRailTile value={5}>
+		</AppRailTile> -->
 	</svelte:fragment>
 </AppRail>

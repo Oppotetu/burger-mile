@@ -38,22 +38,18 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <!-- <AppShell slotSidebarLeft="hidden md:block md:visible bg-surface-500/10"> -->
-<AppShell slotSidebarLeft="w-0 md:w-max bg-surface-500/10" slotHeader="h-max md:hidden">
+<AppShell slotSidebarLeft="w-0 md:w-max bg-surface-500/10" slotHeader="md:hidden">
 	<svelte:fragment slot="header">
-		<AppBar padding="p-2 px-4">
+		<AppBar padding="p-2 px-4" class="h-12 place-content-center">
 			<svelte:fragment slot="lead">
 				<!-- <strong class="gradient-heading text-2xl uppercase"><a href="/">Burgermile</a></strong> -->
-				<img class="btn btn-sm" src={menuHamburger} alt="menu" on:click={triggerLeft} />
+				<button on:click={triggerLeft}>
+					<Icon icon="ic:round-menu" width="42" />
+				</button>
 			</svelte:fragment>
 
 			<svelte:fragment slot="trail">
-				<div class="flex flex-row place-items-center space-x-10">
-					<a href="https://www.instagram.com/burgermile/">
-						<Icon icon="mdi:instagram" width="35" />
-					</a>
-
-					<LightSwitch fillLight="fill-primary-400" fillDark="fill-tertiary-700" />
-				</div>
+				<LightSwitch fillLight="fill-primary-400" fillDark="fill-tertiary-700" />
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
