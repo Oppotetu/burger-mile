@@ -5,24 +5,13 @@
 	import Geolocation from 'svelte-geolocation'
 	import { onMount } from 'svelte'
 	import { windowSizeStore } from 'svelte-legos'
+	import { ProgressBar } from '@skeletonlabs/skeleton'
 
 	const size = windowSizeStore()
 
 	let coords: any = []
 
 	export let joint: Joint
-
-	var x: any
-
-	onMount(() => {
-		// function checkWidth() {
-		//   if (window.matchMedia('(max-width: 768px)').matches) {
-		//     return urlFor(joint.image.asset._ref).width(320).height(240).url()
-		//   } else {
-		//     return urlFor(joint.image.asset._ref).width(240).height(288).url()
-		//   }
-		// }
-	})
 </script>
 
 <Geolocation getPosition bind:coords />
@@ -45,13 +34,60 @@
 		/>
 	</header>
 	<section class="space-y-2 p-2 dark:bg-surface-800">
-		<h3 class="card-title">
+		<h3>
 			{joint.name}
 		</h3>
-		<p>
-			🎲 Score: {joint.average}
-		</p>
-		<p>
+		<div class="flex place-items-center">
+			<p class="pr-2">🎲</p>
+			<ProgressBar
+				label="Score"
+				value={joint.average}
+				max={6}
+				meter="bg-primary-500"
+				track="bg-surface-500"
+			/>
+		</div>
+		<div class="flex place-items-center">
+			<p class="pr-2">🍔</p>
+			<ProgressBar
+				label="Score"
+				value={joint.food}
+				max={6}
+				meter="bg-secondary-500"
+				track="bg-surface-500"
+			/>
+		</div>
+		<div class="flex place-items-center">
+			<p class="pr-2">💰</p>
+			<ProgressBar
+				label="Score"
+				value={joint.price}
+				max={6}
+				meter="bg-success-400"
+				track="bg-surface-500"
+			/>
+		</div>
+		<div class="flex place-items-center">
+			<p class="pr-2">🎉</p>
+			<ProgressBar
+				label="Score"
+				value={joint.atmosphere}
+				max={6}
+				meter="bg-warning-300"
+				track="bg-surface-500"
+			/>
+		</div>
+		<div class="flex place-items-center">
+			<p class="pr-2">😎</p>
+			<ProgressBar
+				label="Score"
+				value={joint.itFactor}
+				max={6}
+				meter="bg-tertiary-500"
+				track="bg-surface-500"
+			/>
+		</div>
+		<!-- <p>
 			Food:
 			{#each { length: joint.food } as _}
 				<span>🍔</span>
@@ -74,12 +110,17 @@
 			{#each { length: joint.itFactor } as _}
 				<span>😎</span>
 			{/each}
-		</p>
+		</p> 
 		<div class=" flex flex-row items-center justify-center">
 			<img src={iconDistance} alt="icon-distance" class="w-5 pt-1" />
 			<p>{joint.distance} km</p>
-		</div>
+		</div> -->
+		<div />
 	</section>
+	<footer class="card-footer flex justify-center">
+		<span class="badge variant-ghost-secondary mr-2">{joint.city}</span>
+		<span class="badge variant-ghost-secondary">{joint.distance} km</span>
+	</footer>
 </a>
 <!-- {#each { length: 6 - joint.food } as _}
 <span><img src={grayBurger} alt="grayburger" /></span>
