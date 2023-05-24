@@ -207,7 +207,7 @@
 				<TimelineOppositeContent slot="opposite-content">
 					{#if option.visible}
 						<h3
-							transition:fly={{ x: option.side ? -200 : 200 }}
+							transition:fly|local={{ x: option.side ? -200 : 200 }}
 							class="m-0 -mt-2 p-0 text-primary-700 dark:text-primary-400"
 						>
 							{option.time}
@@ -226,7 +226,7 @@
 				<TimelineContent>
 					{#if option.visible}
 						<p
-							transition:fly={{ x: option.side ? 200 : -200 }}
+							transition:fly|local={{ x: option.side ? 200 : -200 }}
 							class={`${
 								option.side ? 'text-left md:mr-32 lg:pr-40' : 'text-right md:ml-32 lg:pl-40'
 							}`}

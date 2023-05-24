@@ -212,48 +212,49 @@
 <!-- <hr class="my-6" id="last-hr" />
 </div> -->
 
-<div class="container mx-auto">
-	<hr class="mb-6" id="last-hr" />
+<hr class="mb-6" />
 
+<div class="md:mx-[25%]">
 	<Paginator
 		bind:settings={paginator}
 		text="text-md"
 		buttonClasses="btn-icon variant-filled-primary w-14 text-2xl"
 	/>
-
-	<hr class="my-6" />
 </div>
+
+<hr class="my-6" id="last-hr" />
 
 {#key paginatedSource}
 	<div
-		in:fly={{ y: -30 }}
-		class="breakout mx-0 flex flex-1 flex-row flex-wrap justify-center gap-8 p-4 lg:gap-12"
+		in:fly|local={{ y: -30 }}
+		class="flex flex-1 flex-row flex-wrap justify-center gap-8 p-4 lg:gap-12"
 	>
 		{#each paginatedSource as joint}
 			<BurgerCard {joint} />
 		{/each}
 	</div>
 {/key}
-<div class="container mx-auto">
-	<hr class="my-6" />
 
+<hr class="my-6" />
+
+<div class="md:mx-[25%]">
 	<Paginator
 		on:page={scrollToBurgers}
 		bind:settings={paginator}
 		text="text-md"
 		buttonClasses="btn-icon variant-filled-primary w-14"
 	/>
-
-	<hr class="mt-6" />
 </div>
 
+<hr class="mt-6" />
+
 <style>
-	.breakout {
+	/* .breakout {
 		width: 100vw;
 		position: relative;
 		left: 50%;
 		right: 50%;
 		margin-left: -50vw;
 		margin-right: -50vw;
-	}
+	} */
 </style>

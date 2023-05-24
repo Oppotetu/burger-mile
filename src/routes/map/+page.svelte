@@ -250,14 +250,13 @@
 	</script>
 </svelte:head>
 
-<div class="container mx-auto flex flex-col justify-center text-center">
-	<h1 class="p-2 md:p-6">Map</h1>
+<!-- <div class="container mx-auto flex flex-col justify-center text-center">
+	<h1 class="p-2 md:p-6">Map</h1> -->
 
-	<hr class="py-6 md:py-8" />
-	<main class="h-96">
-		<div class="map h-full" bind:this={mapElement} />
-	</main>
-</div>
+<!-- <hr class="py-6 md:py-8" /> -->
+<main class="h-screen">
+	<div class="map h-full" bind:this={mapElement} />
+</main>
 
 <!-- <script>
   import { onMount, onDestroy } from 'svelte';
