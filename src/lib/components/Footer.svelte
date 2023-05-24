@@ -21,15 +21,15 @@
 		<div class="px-10">
 			<h4 class="pb-3">Navigation</h4>
 			<ul class="space-y-1">
-				<li><a class="text-surface-50 no-underline" href="map">Map</a></li>
-				<li><a class="no-underline" href="/">Home</a></li>
-				<li><a class="no-underline" href="catering">Catering</a></li>
-				<li><a class="no-underline" href="about">About</a></li>
+				<li><a href="/"><p class="text-white no-underline">Home</p></a></li>
+				<li><a href="map"><p class="text-white no-underline">Map</p></a></li>
+				<li><a href="catering"><p class="text-white no-underline">Catering</p></a></li>
+				<li><a href="about"><p class="text-white no-underline">About</p></a></li>
 			</ul>
 		</div>
 		<div class="space-y-3 pl-10">
 			<h4>Contact</h4>
-			<p>Tron.Sanderud@bdo.no</p>
+			<p>tronmagnus@hotmail.com</p>
 		</div>
 	</div>
 </footer>

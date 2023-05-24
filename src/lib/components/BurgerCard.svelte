@@ -3,20 +3,44 @@
 	import type { Joint } from '$lib/types'
 	import iconDistance from '$lib/assets/icon-distance.png'
 	import Geolocation from 'svelte-geolocation'
-	import { fly } from 'svelte/transition'
+	import { onMount } from 'svelte'
+	import { windowSizeStore } from 'svelte-legos'
+
+	const size = windowSizeStore()
 
 	let coords: any = []
 
 	export let joint: Joint
+
+	var x: any
+
+	onMount(() => {
+		// function checkWidth() {
+		//   if (window.matchMedia('(max-width: 768px)').matches) {
+		//     return urlFor(joint.image.asset._ref).width(320).height(240).url()
+		//   } else {
+		//     return urlFor(joint.image.asset._ref).width(240).height(288).url()
+		//   }
+		// }
+	})
 </script>
 
 <Geolocation getPosition bind:coords />
 
-<a class="card card-hover w-60 overflow-hidden" href={`/${joint.slug.current}`}>
+<!-- src={joint.image && urlFor(joint.image.asset._ref).width(235).height(330).url()} -->
+<!-- <button class="btn" on:click={matchesMedia(x)}>heu</button> -->
+
+<!-- {window.matchMedia('(max-width: 768px)').matches
+				? urlFor(joint.image.asset._ref).width(320).height(240).url()
+				: urlFor(joint.image.asset._ref).width(240).height(288).url()} -->
+
+<a class="card card-hover w-80 overflow-hidden md:w-60" href={`/${joint.slug.current}`}>
 	<header class="card-header p-0">
 		<img
-			class="h-72 w-full rounded-md bg-black/50"
-			src={joint.image && urlFor(joint.image.asset._ref).width(235).height(330).url()}
+			class="h-60 w-full rounded-md bg-black/50 md:h-72"
+			src={$size.width <= 768
+				? urlFor(joint.image.asset._ref).width(320).height(240).url()
+				: urlFor(joint.image.asset._ref).width(240).height(288).url()}
 			alt={joint.slug.current}
 		/>
 	</header>

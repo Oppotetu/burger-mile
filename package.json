@@ -45,6 +45,7 @@
 		"leaflet": "^1.9.3",
 		"svelte-geolocation": "^0.3.0",
 		"svelte-leafletjs": "^0.10.0",
+		"svelte-legos": "^0.2.1",
 		"svelte-vertical-timeline": "^1.0.0"
 	}
 }

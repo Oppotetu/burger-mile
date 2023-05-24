@@ -4,9 +4,11 @@
 	import { popup, type PopupSettings } from '@skeletonlabs/skeleton'
 	import { crossfade } from 'svelte/transition'
 	import { quintOut } from 'svelte/easing'
+	import { sortByValue } from '$lib/stores'
+
 	let upperPara: Element | null
 
-	export let sortByValue: string = '_id'
+	$: $sortByValue = '_id'
 
 	let popupCombobox: PopupSettings = {
 		event: 'focus-click',
@@ -73,11 +75,15 @@
 		use:popup={popupCombobox}
 		class="btn btn-icon variant-filled-primary fixed right-1 top-[14%] z-[777] w-24 md:top-[20%]"
 	>
-		{sortByValue === 'average'
+		{$sortByValue === 'average'
 			? 'Score'
-			: sortByValue === '_id'
+			: $sortByValue === 'distance'
+			? 'Proximity'
+			: $sortByValue === 'itFactor'
+			? 'It-Factor'
+			: $sortByValue === '_id'
 			? 'Sort by'
-			: sortByValue.charAt(0).toUpperCase() + sortByValue.slice(1)}
+			: $sortByValue.charAt(0).toUpperCase() + $sortByValue.slice(1)}
 	</button>
 {/if}
 
@@ -92,11 +98,15 @@
 				use:popup={popupCombobox}
 				class="btn variant-filled-primary w-48"
 			>
-				{sortByValue === 'average'
+				{$sortByValue === 'average'
 					? 'Score'
-					: sortByValue === '_id'
+					: $sortByValue === 'distance'
+					? 'Proximity'
+					: $sortByValue === 'itFactor'
+					? 'It-Factor'
+					: $sortByValue === '_id'
 					? 'Sort by'
-					: sortByValue.charAt(0).toUpperCase() + sortByValue.slice(1)}
+					: $sortByValue.charAt(0).toUpperCase() + $sortByValue.slice(1)}
 			</button>
 		{/if}
 	</div>

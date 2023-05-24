@@ -13,7 +13,7 @@
 	// const selected = derived(page, ($page) => $page.url.pathname)
 </script>
 
-<AppRail {selected} width="w-20 xl:w-20" regionDefault="" regionTrail="hidden md:visible md:block">
+<AppRail {selected} width="w-24" regionTrail="hidden md:visible md:block">
 	<svelte:fragment slot="lead">
 		<AppRailTile on:click={drawerClose} value={0} tag="a" href="/" label="Home">
 			<img src={logo} alt="logo" class="w-12" />

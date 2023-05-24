@@ -2,45 +2,32 @@
 	import BurgerCard from '$lib/components/BurgerCard.svelte'
 	import { calculateDistance } from '$lib/CalculateDistance'
 	import Geolocation from 'svelte-geolocation'
-	import {
-		Paginator,
-		type DrawerSettings,
-		type PopupSettings,
-		ListBox,
-		ListBoxItem,
-		popup,
-		AppShell
-	} from '@skeletonlabs/skeleton'
-	import StickyButton from '$lib/components/StickyButton.svelte'
+	import { Paginator, type PopupSettings, ListBox, ListBoxItem } from '@skeletonlabs/skeleton'
 	import { quintOut } from 'svelte/easing'
 	import { crossfade, fade, fly, scale } from 'svelte/transition'
-	import { flip } from 'svelte/animate'
 	import { onMount } from 'svelte'
-	import { page } from '$app/stores'
-	import fjell1 from '$lib/assets/images/fjell1.jpg'
-	import fjell2 from '$lib/assets/images/fjell2.jpg'
-	import { buttonIsUp } from '$lib/stores.js'
+	import { sortByValue } from '$lib/stores.js'
 
 	let events: any = []
 
 	export let data
 
-	let sortByValue: string = '_id'
+	$: sortByValue
 
 	$: source = data.restos.result.slice()
 
 	$: {
-		if (sortByValue === 'average') {
+		if ($sortByValue === 'average') {
 			source = source.sort((a, b) => b.average - a.average)
-		} else if (sortByValue === 'food') {
+		} else if ($sortByValue === 'food') {
 			source = source.sort((a, b) => b.food - a.food)
-		} else if (sortByValue === 'price') {
+		} else if ($sortByValue === 'price') {
 			source = source.sort((a, b) => a.price - b.price)
-		} else if (sortByValue === 'atmosphere') {
+		} else if ($sortByValue === 'atmosphere') {
 			source = source.sort((a, b) => b.atmosphere - a.atmosphere)
-		} else if (sortByValue === 'itFactor') {
+		} else if ($sortByValue === 'itFactor') {
 			source = source.sort((a, b) => b.itFactor - a.itFactor)
-		} else if (sortByValue === 'distance') {
+		} else if ($sortByValue === 'distance') {
 			source = source.sort((a, b) => a.distance - b.distance)
 		}
 	}
@@ -96,7 +83,7 @@
 	}
 
 	let usePopup: any
-	// export let sortByValue: string
+	// export let $sortByValue: string
 
 	const [send, receive] = crossfade({
 		duration: (d) => Math.sqrt(d * 200),
@@ -136,42 +123,42 @@
 		<ListBoxItem
 			on:click={pageReset}
 			on:click={scrollToBurgers}
-			bind:group={sortByValue}
+			bind:group={$sortByValue}
 			name="average"
 			value="average">Score</ListBoxItem
 		>
 		<ListBoxItem
 			on:click={pageReset}
 			on:click={scrollToBurgers}
-			bind:group={sortByValue}
+			bind:group={$sortByValue}
 			name="food"
 			value="food">Food</ListBoxItem
 		>
 		<ListBoxItem
 			on:click={pageReset}
 			on:click={scrollToBurgers}
-			bind:group={sortByValue}
+			bind:group={$sortByValue}
 			name="price"
 			value="price">Price</ListBoxItem
 		>
 		<ListBoxItem
 			on:click={pageReset}
 			on:click={scrollToBurgers}
-			bind:group={sortByValue}
+			bind:group={$sortByValue}
 			name="atmosphere"
 			value="atmosphere">Atmosphere</ListBoxItem
 		>
 		<ListBoxItem
 			on:click={pageReset}
 			on:click={scrollToBurgers}
-			bind:group={sortByValue}
+			bind:group={$sortByValue}
 			name="itFactor"
 			value="itFactor">It-Factor</ListBoxItem
 		>
 		<ListBoxItem
 			on:click={pageReset}
 			on:click={scrollToBurgers}
-			bind:group={sortByValue}
+			bind:group={$sortByValue}
 			name="distance"
 			value="distance">Proximity</ListBoxItem
 		>
@@ -213,11 +200,11 @@
 			use:popup={popupCombobox}
 			class="btn variant-filled-primary w-48"
 		>
-			{sortByValue === 'average'
+			{$sortByValue === 'average'
 				? 'Score'
-				: sortByValue === '_id'
+				: $sortByValue === '_id'
 				? 'Sort by'
-				: sortByValue.charAt(0).toUpperCase() + sortByValue.slice(1)}
+				: $sortByValue.charAt(0).toUpperCase() + $sortByValue.slice(1)}
 		</button>
 	{/if}
 </div> -->
