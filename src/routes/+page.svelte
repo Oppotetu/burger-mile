@@ -227,7 +227,7 @@
 {#key paginatedSource}
 	<div
 		in:fly|local={{ y: -30 }}
-		class="breakout md:ml-10 md:mr-10 flex flex-1 flex-row flex-wrap justify-center gap-8 p-4 lg:gap-12"
+		class="breakout flex flex-1 flex-row flex-wrap justify-center gap-8 p-4 lg:gap-12"
 	>
 		{#each paginatedSource as joint}
 			<BurgerCard {joint} />
@@ -249,12 +249,14 @@
 <hr class="mt-6" />
 
 <style>
-	.breakout {
-		width: 100vw;
-		position: relative;
-		left: 50%;
-		right: 50%;
-		margin-left: -50vw;
-		margin-right: -50vw;
+  @media (max-width: 767px) {
+    .breakout {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+		}
 	}
 </style>
