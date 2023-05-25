@@ -20,7 +20,7 @@
 
 <Geolocation getPosition bind:coords />
 
-<div class="card variant-filled-secondary p-4" data-popup="popupHover">
+<div class="card variant-filled-secondary z-[9999] p-4" data-popup="popupHover">
 	<p>Hover Content</p>
 	<div class="arrow variant-filled-secondary" />
 </div>
