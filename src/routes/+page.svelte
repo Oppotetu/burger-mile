@@ -45,9 +45,9 @@
 
 	let paginator = {
 		offset: 0,
-		limit: 6,
+		limit: 8,
 		size: data.restos.length,
-		amounts: [3, 6, 10, 15]
+		amounts: [4, 8, 10, 15]
 	}
 
 	$: paginatedSource = source.slice(
@@ -249,14 +249,14 @@
 <hr class="mt-6" />
 
 <style>
-  @media (max-width: 767px) {
-    .breakout {
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
+	@media (max-width: 767px) {
+		.breakout {
+			width: 100vw;
+			position: relative;
+			left: 50%;
+			right: 50%;
+			margin-left: -50vw;
+			margin-right: -50vw;
 		}
 	}
 </style>

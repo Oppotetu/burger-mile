@@ -70,8 +70,8 @@
 
 {#if $buttonIsUp === false}
 	<button
-		in:receive={{ key: 'button-id', duration: 400 }}
-		out:send={{ key: 'button-id', duration: 400 }}
+		in:receive|local={{ key: 'button-id', duration: 400 }}
+		out:send|local={{ key: 'button-id', duration: 400 }}
 		use:popup={popupCombobox}
 		class="btn btn-icon variant-filled-primary fixed right-1 top-[14%] z-[777] w-24 md:top-[25%]"
 	>
@@ -93,8 +93,8 @@
 	<div id="last-para" class="h-10 pb-16 md:pb-20 xl:pb-28">
 		{#if $buttonIsUp}
 			<button
-				in:receive={{ key: 'button-id', duration: 400 }}
-				out:send={{ key: 'button-id', duration: 400 }}
+				in:receive|local={{ key: 'button-id', duration: 400 }}
+				out:send|local={{ key: 'button-id', duration: 400 }}
 				use:popup={popupCombobox}
 				class="btn variant-filled-primary w-48"
 			>

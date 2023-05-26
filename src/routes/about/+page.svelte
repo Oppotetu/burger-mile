@@ -145,12 +145,12 @@
 </script>
 
 <div class="container mx-auto flex flex-col">
-	<h1 class="p-2 text-center md:p-6">About Burgermile</h1>
+	<h1 class="p-2 text-center md:p-6">About</h1>
 
 	<hr class="py-6" />
 
 	<div class="md:pb-8">
-		<p class="pb-10 md:float-left md:w-1/2 md:pb-8 md:pr-12 lg:px-20 lg:pb-12">
+		<p class="pb-2 md:float-left md:w-1/2 md:pb-8 md:pr-12 lg:px-20 lg:pb-12">
 			By sharing my opinions and experiences of different burgers on Instagram I want to contribute
 			to create a community of burger lovers who are passionate about exploring and celebrating the
 			best of burger culture. Whether you're a fan of classic cheeseburgers, gourmet creations, or
