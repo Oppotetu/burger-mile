@@ -39,7 +39,9 @@
 		</div>
 	</div>
 
-	<p class="text-left md:col-start-1 md:col-end-3 md:row-start-2 md:row-end-5 md:px-[12%] md:pt-2">
+	<p
+		class="p-6 text-left md:col-start-1 md:col-end-3 md:row-start-2 md:row-end-5 md:px-[12%] md:pt-2"
+	>
 		{resto.review}
 	</p>
 
@@ -52,7 +54,7 @@
 		<span class="badge variant-ghost-error">overcooked</span>
 	</div>
 
-	<div class="md:col-start-3 md:row-start-3 md:-ml-4 md:pr-10">
+	<div class="p-6 md:col-start-3 md:row-start-3 md:-ml-4 md:pr-10">
 		<div class="flex place-items-center">
 			<p class="mr-2 [&>*]:pointer-events-none">🎲</p>
 			<ProgressBar
@@ -106,8 +108,7 @@
 	</div>
 	<div class="text-center md:col-start-3 md:row-start-4 md:-ml-4 md:pr-10">
 		<p>Reviewed in {resto.year}</p>
-		<br />
-		<p>
+		<p class="p-2 pb-5">
 			Check out {resto.name} in the <a href={`map?setView=${resto.slug.current}`}>map</a>!
 		</p>
 	</div>
