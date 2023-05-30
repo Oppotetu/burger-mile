@@ -183,11 +183,10 @@
 		</p>
 	</div>
 
-	<h1 class="p-2 text-center md:p-6">Timeline</h1>
-	<hr class="pt-6" />
+	<h2 class="p-2 text-center md:p-6">Burgermile history</h2>
 </div>
 
-<div class="md:container md:mx-auto">
+<div class="card">
 	<Timeline
 		position="alternate"
 		style="

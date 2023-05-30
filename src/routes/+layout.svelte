@@ -61,7 +61,7 @@
 	<svelte:fragment slot="sidebarLeft">
 		<Navigation />
 	</svelte:fragment>
-	<div class="container mx-auto">
+	<div class="container mx-auto px-6">
 		<slot />
 	</div>
 	<svelte:fragment slot="pageFooter">

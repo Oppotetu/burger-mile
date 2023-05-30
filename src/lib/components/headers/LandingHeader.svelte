@@ -73,7 +73,7 @@
 		in:receive|local={{ key: 'button-id', duration: 400 }}
 		out:send|local={{ key: 'button-id', duration: 400 }}
 		use:popup={popupCombobox}
-		class="btn btn-icon variant-filled-primary fixed right-1 top-[14%] z-[777] w-24 md:top-[25%]"
+		class="btn btn-icon variant-filled-primary fixed right-1 top-[14%] z-[777] w-24 md:right-4 md:top-[25%]"
 	>
 		{$sortByValue === 'average'
 			? 'Score'
