@@ -2,7 +2,9 @@
 	import type { LatLngExpression, LayerGroup, Map } from 'leaflet'
 	import { browser } from '$app/environment'
 	import { onDestroy, onMount } from 'svelte'
-	import locationArrow from '$lib/assets/location-arrow.svg'
+	// import locationArrow from '$lib/assets/location-arrow.svg'
+	import locationSvg from '$lib/assets/location.svg'
+
 	import { createEventDispatcher } from 'svelte'
 	import type { AutocompleteOption } from '@skeletonlabs/skeleton'
 	import LeafletSearch from '$lib/components/LeafletSearch.svelte'
@@ -202,7 +204,22 @@
 				}
 			}
 
+			var userIcon = L.icon({
+				iconUrl: locationSvg,
+				iconSize: [41, 41],
+				iconAnchor: [20, 41],
+				popupAnchor: [1, -34],
+				tooltipAnchor: [16 - 28]
+			})
+
 			getMarkerLocations()
+
+			navigator.geolocation.getCurrentPosition(function (position) {
+				console.log(position)
+				L.marker([position.coords.latitude, position.coords.longitude], {
+					icon: userIcon
+				}).addTo(map)
+			})
 
 			L.control.search({ position: 'topright' }).addTo(map)
 
