@@ -36,6 +36,7 @@
 	<!-- Google tag (gtag.js) -->
 	<!-- Google tag (gtag.js) -->
 	<!-- Google tag (gtag.js) -->
+	<!-- Google tag (gtag.js) -->
 	<script async src="http://www.googletagmanager.com/gtag/js?id=G-E1S1TKK3YG"></script>
 	<script>
     window.dataLayer = window.dataLayer || [];
@@ -70,31 +71,6 @@
 		</p>
 
 		{#if resto.pros}
-			<div class="card grid grid-cols-1 gap-1 md:mx-[12%] md:!grid-cols-3">
-				<div class="p-2 md:p-6">
-					<h4 class="w-full pb-2">Pros 👍</h4>
-					{#each resto.pros as pro}
-						<span class="chip variant-ghost-success">{pro}</span>
-					{/each}
-				</div>
-				<div class="p-2 md:p-6">
-					<h4 class="w-full pb-2">Cons 👎</h4>
-					{#each resto.cons as con}
-						<span class="chip variant-ghost-error">{con}</span>
-					{/each}
-				</div>
-				<span class="p-2 md:p-6">
-					<h4 class="w-full pb-2">Price 💰</h4>
-					{#if resto.price === 1 || resto.price === 2}
-						<p>Cheap</p>
-					{:else if resto.price === 3 || resto.price === 4}
-						<p>Mid-priced</p>
-					{:else if resto.price === 5 || resto.price === 6}
-						<p>Expensive</p>
-					{/if}
-				</span>
-			</div>
-		{:else if resto.cons}
 			<div class="card grid grid-cols-1 gap-1 md:mx-[12%] md:!grid-cols-3">
 				<div class="p-2 md:p-6">
 					<h4 class="w-full pb-2">Pros 👍</h4>
