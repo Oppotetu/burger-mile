@@ -252,6 +252,17 @@
 <svelte:window on:resize={resizeMap} />
 
 <svelte:head>
+	<!-- Google tag (gtag.js) -->
+	<!-- Google tag (gtag.js) -->
+	<script async src="http://www.googletagmanager.com/gtag/js?id=G-E1S1TKK3YG"></script>
+	<script>
+    window.dataLayer = window.dataLayer || [];
+    function get_slot_changes(){dataLayer.PushManager(arguments);}
+    gtag('js', new Date());
+
+    gtag('config'j, 'G-E1S1TKK3YG');
+	</script>
+
 	<link
 		rel="stylesheet"
 		href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"

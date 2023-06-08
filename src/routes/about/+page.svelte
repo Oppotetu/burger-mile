@@ -51,7 +51,7 @@
 		{
 			title: 'Second rating system',
 			time: '14th of January 2018',
-			description: 'The second rating system is created. Everything is rated out of six',
+			description: 'The second rating system is created. Everything is rated out of six.',
 			visible: false,
 			side: false,
 			long: false
@@ -59,7 +59,8 @@
 		{
 			title: 'Catering',
 			time: '14th of January 2019',
-			description: 'Burgermile starts to offer burgercatering.',
+			description:
+				'Burgermile starts to offer burgercatering in the Oslo area. This includes events and celebrations at home.',
 			visible: false,
 			side: true,
 			long: false
@@ -67,7 +68,7 @@
 		{
 			title: 'Burgerflip',
 			time: '7th of July 2020',
-			description: 'First burgerflip published.',
+			description: 'Burgermile first burgerflip is published on Instagram.',
 			visible: false,
 			side: false,
 			long: false
@@ -75,7 +76,7 @@
 		{
 			title: 'Logo',
 			time: '10th of April 2022',
-			description: 'New logo published.',
+			description: 'After an exciting logo contest Burgermiles new logo is published.',
 			visible: false,
 			side: true,
 			long: false
@@ -83,7 +84,7 @@
 		{
 			title: 'Rebranding',
 			time: '23rd of April 2022',
-			description: 'Rebranding of Burgermile profile',
+			description: 'The Burgermile profile on Instagram is rebranded.',
 			visible: false,
 			side: false,
 			long: false
@@ -91,7 +92,7 @@
 		{
 			title: 'Webpage',
 			time: 'XX',
-			description: 'Webpage launched',
+			description: 'The Burgermile webpage is launched.',
 			visible: false,
 			side: true,
 			long: false
@@ -143,6 +144,19 @@
 		})
 	})
 </script>
+
+<svelte:head>
+	<!-- Google tag (gtag.js) -->
+	<!-- Google tag (gtag.js) -->
+	<script async src="http://www.googletagmanager.com/gtag/js?id=G-E1S1TKK3YG"></script>
+	<script>
+    window.dataLayer = window.dataLayer || [];
+    function get_slot_changes(){dataLayer.PushManager(arguments);}
+    gtag('js', new Date());
+
+    gtag('config'j, 'G-E1S1TKK3YG');
+	</script>
+</svelte:head>
 
 <div class="container mx-auto flex flex-col">
 	<h1 class="p-2 text-center md:p-6">About</h1>
