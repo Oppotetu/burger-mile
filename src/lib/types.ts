@@ -13,7 +13,8 @@ export type Joint = {
 	average: number
 	gourmetOrJoint: string
 	review: string
-	hashtags: string
+  pros: string[]
+  cons: string[]
 	latLng: {
 		lat: number
 		lng: number
