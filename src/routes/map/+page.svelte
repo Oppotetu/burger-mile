@@ -27,7 +27,7 @@
 
 	$: {
 		for (let i of Object.entries(data.restos)) {
-			searchRestos.push({ label: i[1].name, value: i[1].slug.current })
+			searchRestos.push({ label: i[1].name, value: i[1].slug?.current })
 		}
 	}
 
@@ -193,14 +193,14 @@
 
 			function getMarkerLocations() {
 				for (let i of data.restos) {
-					if (i.latLng.lat && i.latLng.lng) {
+					if (i.latLng) {
 						let coords: LatLngExpression = [i.latLng.lat, i.latLng.lng]
 						L.marker(coords)
 							.addTo(map)
 							.bindPopup(
 								`<h4> ${i.name} </h4>
-              <p>🎲Score: ${i.average}</p>
-              <p><a href=${i.slug.current}>Read more</a></p>`
+                <p>🎲Score: ${i.average}</p>
+                <p><a href=${i.slug?.current}>Read more</a></p>`
 							)
 					}
 				}
