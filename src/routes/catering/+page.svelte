@@ -7,19 +7,6 @@
 	})
 </script>
 
-<svelte:head>
-	<!-- Google tag (gtag.js) -->
-	<!-- Google tag (gtag.js) -->
-	<script async src="http://www.googletagmanager.com/gtag/js?id=G-E1S1TKK3YG"></script>
-	<script>
-    window.dataLayer = window.dataLayer || [];
-    function get_slot_changes(){dataLayer.PushManager(arguments);}
-    gtag('js', new Date());
-
-    gtag('config'j, 'G-E1S1TKK3YG');
-	</script>
-</svelte:head>
-
 <div class="container mx-auto flex flex-col justify-center text-center">
 	<h1 class="p-2 md:p-6">Catering</h1>
 	<hr class="py-6 md:py-8" />

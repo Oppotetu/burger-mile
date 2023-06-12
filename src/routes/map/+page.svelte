@@ -193,14 +193,16 @@
 
 			function getMarkerLocations() {
 				for (let i of data.restos) {
-					let coords: LatLngExpression = [i.latLng.lat, i.latLng.lng]
-					L.marker(coords)
-						.addTo(map)
-						.bindPopup(
-							`<h4> ${i.name} </h4>
-            <p>🎲Score: ${i.average}</p>
-            <p><a href=${i.slug.current}>Read more</a></p>`
-						)
+					if (i.latLng.lat && i.latLng.lng) {
+						let coords: LatLngExpression = [i.latLng.lat, i.latLng.lng]
+						L.marker(coords)
+							.addTo(map)
+							.bindPopup(
+								`<h4> ${i.name} </h4>
+              <p>🎲Score: ${i.average}</p>
+              <p><a href=${i.slug.current}>Read more</a></p>`
+							)
+					}
 				}
 			}
 
@@ -216,9 +218,11 @@
 
 			navigator.geolocation.getCurrentPosition(function (position) {
 				console.log(position)
-				L.marker([position.coords.latitude, position.coords.longitude], {
-					icon: userIcon
-				}).addTo(map)
+				if (position.coords.latitude && position.coords.longitude) {
+					L.marker([position.coords.latitude, position.coords.longitude], {
+						icon: userIcon
+					}).addTo(map)
+				}
 			})
 
 			L.control.search({ position: 'topright' }).addTo(map)
@@ -252,17 +256,6 @@
 <svelte:window on:resize={resizeMap} />
 
 <svelte:head>
-	<!-- Google tag (gtag.js) -->
-	<!-- Google tag (gtag.js) -->
-	<script async src="http://www.googletagmanager.com/gtag/js?id=G-E1S1TKK3YG"></script>
-	<script>
-    window.dataLayer = window.dataLayer || [];
-    function get_slot_changes(){dataLayer.PushManager(arguments);}
-    gtag('js', new Date());
-
-    gtag('config'j, 'G-E1S1TKK3YG');
-	</script>
-
 	<link
 		rel="stylesheet"
 		href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"

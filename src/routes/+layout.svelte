@@ -23,6 +23,7 @@
 	import Icon from '@iconify/svelte'
 	import LandingHeader from '$lib/components/headers/LandingHeader.svelte'
 	import { page } from '$app/stores'
+	import Analytics from '$lib/components/Analytics.svelte'
 
 	function triggerLeft(): void {
 		const drawerSettings: DrawerSettings = { id: 'left', position: 'left' }
@@ -31,6 +32,8 @@
 
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow })
 </script>
+
+<Analytics />
 
 <Drawer width="w-max" zIndex="z-[7777]">
 	<Navigation />
