@@ -4,7 +4,7 @@
 
 	$: {
 		if (typeof gtag !== 'undefined') {
-			gtag('config', process.env.MEASUREMENT_ID, {
+			gtag('config', 'G-E1S1TKK3YG', {
 				page_title: document.title,
 				page_path: $page.url.pathname
 			})
@@ -13,7 +13,7 @@
 </script>
 
 <svelte:head>
-	<script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.MEASUREMENT_ID}`}>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-E1S1TKK3YG">
 	</script>
 	<script>
 		window.dataLayer = window.dataLayer || []
@@ -23,6 +23,6 @@
 		}
 
 		gtag('js', new Date())
-		gtag('config', process.env.MEASUREMENT_ID)
+		gtag('config', 'G-E1S1TKK3YG')
 	</script>
 </svelte:head>
