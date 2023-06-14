@@ -7,6 +7,10 @@
 	})
 </script>
 
+<svelte:head>
+	<title>Catering Burgermile</title>
+</svelte:head>
+
 <div class="container mx-auto flex flex-col justify-center text-center">
 	<h1 class="p-2 md:p-6">Catering</h1>
 	<hr class="py-6 md:py-8" />

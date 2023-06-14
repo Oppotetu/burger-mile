@@ -145,6 +145,10 @@
 	})
 </script>
 
+<svelte:head>
+	<title>About Burgermile</title>
+</svelte:head>
+
 <div class="container mx-auto flex flex-col">
 	<h1 class="p-2 text-center md:p-6">About</h1>
 

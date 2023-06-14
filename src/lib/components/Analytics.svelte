@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/stores'
+	import { env } from '$env/dynamic/private'
 
 	$: {
 		if (typeof gtag !== 'undefined') {
-			gtag('config', 'G-E1S1TKK3YG', {
+			gtag('config', process.env.MEASUREMENT_ID, {
 				page_title: document.title,
 				page_path: $page.url.pathname
 			})
@@ -12,7 +13,7 @@
 </script>
 
 <svelte:head>
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-E1S1TKK3YG">
+	<script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.MEASUREMENT_ID}`}>
 	</script>
 	<script>
 		window.dataLayer = window.dataLayer || []
@@ -22,6 +23,6 @@
 		}
 
 		gtag('js', new Date())
-		gtag('config', 'G-E1S1TKK3YG')
+		gtag('config', process.env.MEASUREMENT_ID)
 	</script>
 </svelte:head>

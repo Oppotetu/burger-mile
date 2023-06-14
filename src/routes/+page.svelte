@@ -118,6 +118,10 @@
 	})
 </script>
 
+<svelte:head>
+	<title>Burgermile home</title>
+</svelte:head>
+
 <div class="card variant-glass-secondary z-[888] w-48 py-2 shadow-xl" data-popup="combobox">
 	<ListBox rounded="rounded-none">
 		<ListBoxItem
@@ -173,9 +177,9 @@
 		for (let i of data.restos.result) {
 			Object.assign(i, {
 				distance: calculateDistance(
-					i.latLng.lng,
+					i.latLng?.lng,
 					events[0].coords.longitude,
-					i.latLng.lat,
+					i.latLng?.lat,
 					events[0].coords.latitude
 				)
 			})
@@ -214,7 +218,7 @@
 
 <hr class="mb-6" />
 
-<div class="md:mx-[25%]">
+<div class="md:mx-[20%]">
 	<Paginator
 		bind:settings={paginator}
 		text="text-md"
@@ -237,7 +241,7 @@
 
 <hr class="my-6" />
 
-<div class="md:mx-[25%]">
+<div class="md:mx-[15%]">
 	<Paginator
 		on:page={scrollToBurgers}
 		bind:settings={paginator}

@@ -17,6 +17,10 @@
 	})
 </script>
 
+<svelte:head>
+	<title>Review of {resto.name}</title>
+</svelte:head>
+
 <!-- <div class="card variant-filled-secondary z-[9999] p-4" data-popup="popupHover">
 	<p>content</p>
 	<div class="arrow variant-filled-secondary" />

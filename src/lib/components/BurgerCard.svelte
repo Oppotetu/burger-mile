@@ -32,7 +32,7 @@
 			src={$size.width <= 768
 				? urlFor(joint.image.asset._ref).width(320).height(224).url()
 				: urlFor(joint.image.asset._ref).width(240).height(256).url()}
-			alt={joint.slug.current}
+			alt={joint.slug ? joint.slug.current : 'burger-image'}
 		/>
 	</header>
 	<section class="space-y-1 p-2 dark:bg-surface-800">
