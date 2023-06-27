@@ -36,7 +36,7 @@
 		/>
 		{#if joint.average}
 			<span
-				class="badge-icon absolute -bottom-2 -left-3 h-12 w-12 border-2 bg-primary-500 border-surface-900-50-token"
+				class="badge-icon absolute -bottom-2 -left-3 h-12 w-12 border-2 border-surface-900 text-base bg-surface-200-700-token dark:border-primary-500 dark:text-primary-500"
 				>{joint.average}</span
 			>
 		{/if}

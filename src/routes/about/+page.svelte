@@ -91,18 +91,10 @@
 		},
 		{
 			title: 'Webpage',
-			time: 'XX',
+			time: '29th of June 2023',
 			description: 'The Burgermile webpage is launched.',
 			visible: false,
 			side: true,
-			long: false
-		},
-		{
-			title: '?',
-			time: '?',
-			description: '?',
-			visible: false,
-			side: false,
 			long: false
 		}
 	]

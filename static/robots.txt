@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 
+Disallow: /about/
 Disallow: /analytics.svelte
 Disallow: /?s=
 Disallow: /*?*

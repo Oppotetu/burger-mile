@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import { urlFor } from '$lib/config/images.js'
+	// import { sortLocalStore } from '$lib/stores.js'
 	import { ProgressBar, popup, type PopupSettings } from '@skeletonlabs/skeleton'
-	import { onMount } from 'svelte'
+	import { onDestroy, onMount } from 'svelte'
+	// import { get } from 'svelte/store'
 	export let data
 	let resto = data.resto.slice()[0]
 
@@ -14,6 +16,11 @@
 
 	onMount(() => {
 		document.getElementById('page')?.scrollTo(0, 0)
+		// console.log(get(sortLocalStore))
+	})
+
+	onDestroy(() => {
+		// console.log(get(sortLocalStore))
 	})
 </script>
 
@@ -102,30 +109,19 @@
 					track="bg-surface-300 dark:bg-surface-500"
 				/>
 			</li>
-			<!-- <br />
-			<li>
-				<p>🎲</p>
-				<ProgressBar
-					label="Score"
-					value={resto.average}
-					max={6}
-					meter="bg-primary-500"
-					track="bg-surface-300 dark:bg-surface-500"
-				/>
-			</li> -->
 		</ul>
 
 		<div class="card grid grid-cols-1 gap-1 md:mx-[12%] md:!grid-cols-2">
-      <span class="p-2 md:p-6">
-        <h4 class="w-full pb-2">Price 💰</h4>
-        {#if resto.price === 1 || resto.price === 2}
-          <span class="badge variant-ghost-success h-12 w-12">$</span>
-        {:else if resto.price === 3 || resto.price === 4}
-          <span class="badge variant-ghost-success h-12 w-12">$$</span>
-        {:else if resto.price === 5 || resto.price === 6}
-          <span class="badge variant-ghost-success h-12 w-12">$$$</span>
-        {/if}
-      </span>
+			<span class="p-2 md:p-6">
+				<h4 class="w-full pb-2">Price 💰</h4>
+				{#if resto.price === 1 || resto.price === 2}
+					<span class="badge variant-ghost-success h-12 w-12">$</span>
+				{:else if resto.price === 3 || resto.price === 4}
+					<span class="badge variant-ghost-success h-12 w-12">$$</span>
+				{:else if resto.price === 5 || resto.price === 6}
+					<span class="badge variant-ghost-success h-12 w-12">$$$</span>
+				{/if}
+			</span>
 			<span class="flex flex-col place-items-center p-2 md:p-6">
 				<h4 class="w-full pb-2">Score 🎲</h4>
 				<span class="badge-icon h-12 w-12 border-2 bg-primary-500 border-surface-900-50-token"

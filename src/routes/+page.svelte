@@ -5,8 +5,11 @@
 	import { Paginator, type PopupSettings, ListBox, ListBoxItem } from '@skeletonlabs/skeleton'
 	import { quintOut } from 'svelte/easing'
 	import { crossfade, fade, fly, scale } from 'svelte/transition'
-	import { onMount } from 'svelte'
+	import { onDestroy, onMount } from 'svelte'
 	import { sortByValue } from '$lib/stores.js'
+	// import { sortLocalStore } from '$lib/stores.js'
+	import { get } from 'svelte/store'
+	import { navigating } from '$app/stores'
 
 	let events: any = []
 
@@ -36,13 +39,6 @@
 		paginator.offset = 0
 	}
 
-	// $: {
-	// 	if ($reset === true) {
-	// 		paginator.offset = 0
-	// 		$reset = false
-	// 	}
-	// }
-
 	let paginator = {
 		offset: 0,
 		limit: 8,
@@ -60,14 +56,6 @@
 	// 	drawerStore.open(drawerSettings)
 	// }
 
-	function scrollIntoView(e: any) {
-		const el = document.querySelector(e.target.getAttribute('href'))
-		if (!el) return
-		el.scrollIntoView({
-			behavior: 'smooth'
-		})
-	}
-
 	const scrollToBurgers = (e: any) => {
 		return document.querySelector('#last-hr')?.scrollIntoView({
 			behavior: 'smooth'
@@ -81,9 +69,6 @@
 		// Close the popup when the item is clicked
 		closeQuery: '.listbox-item'
 	}
-
-	let usePopup: any
-	// export let $sortByValue: string
 
 	const [send, receive] = crossfade({
 		duration: (d) => Math.sqrt(d * 200),
@@ -103,19 +88,19 @@
 		}
 	})
 
-	// let buttonIsUp = true
-
-	// function handleClick() {
-	// 	if (buttonIsUp) {
-	// 		$buttonIsUp = false
-	// 	} else {
-	// 		$buttonIsUp = true
-	// 	}
-	// }
-
 	onMount(() => {
 		document.getElementById('page')?.scrollTo(0, 0)
+		// console.log(get(sortLocalStore))
 	})
+
+  onDestroy(() => {
+    // console.log(get(sortLocalStore))
+  })
+
+	// $: if ($navigating?.to?.route.id === '/[resto]') {
+	// 	sortLocalStore.set($sortByValue)
+	// 	// console.log(get(sortLocalStore))
+	// }
 </script>
 
 <svelte:head>
