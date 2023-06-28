@@ -211,7 +211,7 @@
 					{/if}
 					<!-- <p class="m-0 p-0">{option.time}</p> -->
 				</TimelineOppositeContent>
-				<div class={`${option.long ? 'h-72 md:h-36' : 'h-48 md:h-32'}`}>
+				<div class={`${option.long ? 'h-72 md:h-36' : 'h-48 md:h-32'} overflow-hidden`}>
 					<TimelineSeparator>
 						<TimelineDot
 							style="background-color: rgba(var(--color-secondary-400) / 1); border-color: rgba(var(--color-surface-400));"
@@ -245,7 +245,7 @@
 	</Timeline>
 </div>
 
-<hr class="mt-20 py-6" />
+<!-- <hr class="mt-20 py-6" /> -->
 
 <!-- in:fly={{ x: 200, duration: 2000 }}
 out:fly={{ x: -200, duration: 2000 }} -->
